@@ -20,5 +20,14 @@ jobs:
         context: ./backend/
         file: ./backend/Dockerfile
         tags:  eu.gcr.io/health-hack-guardian/guardian-backend:${{ github.event.release.tag_name }}
+    - name: Setup gcloud environment
+      # You may pin to the exact commit or the version.
+      # uses: google-github-actions/setup-gcloud@61938f87149d8a75fd3d7385a5081d8a4169156d
+      uses: google-github-actions/setup-gcloud@0.1.2
+      with:
+        # The service account email which will be used for authentication.
+        service_account_email: backend-ci@health-hack-guardian.iam.gserviceaccount.com
+        # The service account key which will be used for authentication.
+        service_account_key: ${{ secrets.BACKEND_CI_KEY }}
 
 
