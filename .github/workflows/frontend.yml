@@ -1,0 +1,26 @@
+
+name: Publish
+
+on:
+  release:
+    types: [created]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js environment
+      uses: actions/setup-node@v2.1.2
+      with:
+        node-version: '14.15.0'
+    - name: npm install and npm run build
+      run: |
+        cd frontend/guardian
+        npm i
+        ng build --prod
+    - name: Publish
+      uses: w9jds/firebase-action@v1.5.0
+      with:
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
