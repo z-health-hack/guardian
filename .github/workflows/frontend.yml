@@ -44,3 +44,4 @@ jobs:
         env:
           PROJECT_PATH : ./frontend/guardian
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID:  health-hack-guardian
