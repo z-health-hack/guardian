@@ -1,0 +1,18 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="main-container background">
+  <div>
+    <div class="login p-5">
+      <h3 class="mat-h3 pb-2">Please log in</h3>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username"/>
+        </mat-form-field>
+        <mat-form-field class="pb-4">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password"/>
+        </mat-form-field>
+        <button type="submit" mat-flat-button color="primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
