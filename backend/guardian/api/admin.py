@@ -1,3 +1,5 @@
 from django.contrib import admin
+from api.models import TimeSeries, DataPoint
 
-# Register your models here.
+admin.site.register(TimeSeries)
+admin.site.register(DataPoint)
