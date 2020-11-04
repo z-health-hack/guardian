@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "health-hack-guardian": {
+      "hosting": {
+        "guardian": [
+          "health-hack-guardian"
+        ]
+      }
+    }
+  }
+}
