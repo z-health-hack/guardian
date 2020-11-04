@@ -30,14 +30,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
           name: dist
-          path: dist
+          path: ./frontend/guardian/dist
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
+          PROJECT_PATH : ./frontend/guardian
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID:  health-hack-guardian
