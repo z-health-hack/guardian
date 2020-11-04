@@ -18,7 +18,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TimeSeries
-        fields = ['owner', 'time_series_type', 'description']
+        fields = ['id', 'owner', 'time_series_type', 'description']
 
 
 class DataPointSerializer(serializers.HyperlinkedModelSerializer):

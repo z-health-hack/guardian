@@ -7,15 +7,22 @@ from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerialize
 
 
 class TimeSeriesViewSet(viewsets.ModelViewSet):
-    queryset = TimeSeries.objects.all().order_by('id')
     serializer_class = TimeSeriesSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user
+        return TimeSeries.objects.filter(authorized_users__id=user.id).all()
+
 
 class DataPointViewSet(viewsets.ModelViewSet):
-    queryset = DataPoint.objects.all().order_by('id')
     serializer_class = DataPointSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        timeseries = TimeSeries.objects.filter(authorized_users__id=user.id).all()
+        return DataPoint.objects.filter(time_series=timeseries.id).all()
 
 
 class UserViewSet(viewsets.ModelViewSet):
