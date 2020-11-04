@@ -12,3 +12,9 @@ Description of the Guardian Angel backend.
     ```
    curl -X GET -H "Authorization: Token <token>" <host>:<port>/api/v1/timeseries/
    ```
+
+
+
+# Deploy
+
+eu.gcr.io/health-hack-guardian/guardian-backend:0.0.1
