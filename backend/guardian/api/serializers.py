@@ -15,15 +15,17 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'name']
 
 
-class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = TimeSeries
-        fields = ['id', 'owner', 'time_series_type', 'description']
-
-
 class DataPointSerializer(serializers.HyperlinkedModelSerializer):
     time_series_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
 
     class Meta:
         model = DataPoint
         fields = ['time_stamp', 'value', 'time_series_id']
+
+
+class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
+    data_points = DataPointSerializer(many=True)
+
+    class Meta:
+        model = TimeSeries
+        fields = ['id', 'owner', 'time_series_type', 'description', 'data_points']

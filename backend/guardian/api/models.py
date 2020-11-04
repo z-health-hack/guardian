@@ -10,6 +10,6 @@ class TimeSeries(models.Model):
 
 
 class DataPoint(models.Model):
-    time_series = models.ForeignKey(TimeSeries, null=False, on_delete=models.CASCADE)
+    time_series = models.ForeignKey(TimeSeries, null=False, on_delete=models.CASCADE, related_name='data_points')
     time_stamp = models.DateTimeField()
     value = models.FloatField()
