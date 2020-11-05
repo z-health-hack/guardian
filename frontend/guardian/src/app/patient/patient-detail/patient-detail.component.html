@@ -1,1 +1,95 @@
-<p>patient-detail: {{ getId }}</p>
+<!--<p>patient-detail: {{ getId }}</p>-->
+
+<div class="detailview">
+  <div>
+    <div class="detailview-title title-info">Patient {{ getId }} Information</div>
+
+    <table class="detailview-table">
+      <tbody>
+      <tr>
+        <td>Name:</td>
+        <td>Max Muster</td>
+      </tr>
+      <tr>
+        <td>Date of birth:</td>
+        <td>01.02.1978</td>
+      </tr>
+      <tr>
+        <td>Date of diagnosis:</td>
+        <td>03.04.2005</td>
+      </tr>
+      <tr>
+        <td>Emergency contact:</td>
+        <td>Emma Example<br>Teststr. 5<br>1234 Location</td>
+      </tr>
+      <tr>
+        <td>Address of residence:</td>
+        <td>Teststr. 5<br>1234 Location</td>
+      </tr>
+      <tr>
+        <td>Allergies:</td>
+        <td>&ndash;</td>
+      </tr>
+      <tr>
+        <td>Notes:</td>
+        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div>
+    <div class="detailview-title title-stm">Short Term Measurements</div>
+
+    <div class="detailview-plot-title">Blood oxygen saturation</div>
+    <div class="detailview-plot">
+      <div class="detailview-plot-inner"></div>
+    </div>
+
+    <div class="detailview-plot-title">Heart rate</div>
+    <div class="detailview-plot">
+      <div class="detailview-plot-inner"></div>
+    </div>
+
+  </div>
+  <div>
+    <div class="detailview-title title-ltm">Long Term Measurements</div>
+
+    <div class="detailview-plot-title">Strength</div>
+    <div class="detailview-plot">
+      <div class="detailview-plot-inner"></div>
+    </div>
+
+    <div class="detailview-prediction">
+      <div class="detailview-prediction-title">Predictions:</div>
+      <div class="detailview-prediction-item">&ndash;&nbsp;&nbsp;Hand pressure will likely drop below x within the next 4 to 10 weeks</div>
+    </div>
+
+    <div class="detailview-plot-title">Mobility</div>
+    <div class="detailview-plot">
+      <div class="detailview-plot-inner"></div>
+    </div>
+
+  </div>
+</div>
+
+<!--<script>-->
+<!--  let graph_divs = document.querySelectorAll('.detailview-plot-inner');-->
+<!--  graph_divs.forEach(graph_div => {-->
+<!--    Plotly.newPlot(-->
+<!--      graph_div,-->
+<!--      [-->
+<!--        {-->
+<!--          x: [1, 2, 3, 4, 5],-->
+<!--          y: [5, 3, 4, 6, 4]-->
+<!--        }-->
+<!--      ],-->
+<!--      {-->
+<!--        margin: { t: 0, l: 0, r: 0, b: 0 }-->
+<!--      },-->
+<!--      {-->
+<!--        responsive: true-->
+<!--      }-->
+<!--    );-->
+<!--  });-->
+<!--</script>-->
