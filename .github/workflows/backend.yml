@@ -29,5 +29,10 @@ jobs:
         service_account_email: backend-ci@health-hack-guardian.iam.gserviceaccount.com
         # The service account key which will be used for authentication.
         service_account_key: ${{ secrets.BACKEND_CI_KEY }}
-
+        
+    # Build and push image to Google Container Registry
+    - name: Push to ECR
+      run: |
+        gcloud auth configure-docker
+        docker push eu.gcr.io/health-hack-guardian/guardian-backend:${{ github.event.release.tag_name }}
 
