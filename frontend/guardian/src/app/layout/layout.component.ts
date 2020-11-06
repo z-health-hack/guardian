@@ -19,6 +19,7 @@ export class LayoutComponent {
     private userProfileService: UserProfileService,
   ) {
     this.userProfile$ = userProfileService.userProfile$;
+    userProfileService.fetchUserProfile();
   }
 
   logout(): void {
