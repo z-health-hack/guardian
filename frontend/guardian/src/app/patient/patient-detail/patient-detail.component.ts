@@ -12,6 +12,10 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
   private id = '?';
+  public stepsData = [{ x: [1, 2, 3], y: [2, 6, 3] }];
+  public strengthData = [{ x: [1, 2, 3], y: [2, 6, 3] }];
+  public heartRateData = [{ x: [1, 2, 3], y: [2, 6, 3] }];
+  public bloodOxyData = [{ x: [1, 2, 3], y: [2, 6, 3] }];
 
   constructor(
     private route: ActivatedRoute,

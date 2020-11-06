@@ -1,5 +1,4 @@
 <!--<p>patient-detail: {{ getId }}</p>-->
-
 <div class="detailview">
   <div>
     <div class="detailview-title title-info">Patient {{ getId }} Information</div>
@@ -43,12 +42,16 @@
 
     <div class="detailview-plot-title">Blood oxygen saturation</div>
     <div class="detailview-plot">
-      <div class="detailview-plot-inner"></div>
+      <div class="detailview-plot-inner">
+        <plotly-plot [data]="bloodOxyData"></plotly-plot>
+      </div>
     </div>
 
     <div class="detailview-plot-title">Heart rate</div>
     <div class="detailview-plot">
-      <div class="detailview-plot-inner"></div>
+      <div class="detailview-plot-inner">
+        <plotly-plot [data]="heartRateData"></plotly-plot>
+      </div>
     </div>
 
   </div>
@@ -57,7 +60,9 @@
 
     <div class="detailview-plot-title">Strength</div>
     <div class="detailview-plot">
-      <div class="detailview-plot-inner"></div>
+      <div class="detailview-plot-inner">
+        <plotly-plot [data]="strengthData"></plotly-plot>
+      </div>
     </div>
 
     <div class="detailview-prediction">
@@ -67,7 +72,9 @@
 
     <div class="detailview-plot-title">Mobility</div>
     <div class="detailview-plot">
-      <div class="detailview-plot-inner"></div>
+      <div class="detailview-plot-inner">
+        <plotly-plot [data]="stepsData"></plotly-plot>
+      </div>
     </div>
 
   </div>
