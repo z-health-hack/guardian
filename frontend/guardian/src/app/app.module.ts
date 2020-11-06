@@ -10,6 +10,7 @@ import {MaterialModule} from './material.module';
 import {MatCardModule} from '@angular/material/card';
 import {LayoutComponent} from './layout/layout.component';
 import {LoginModule} from './login/login.module';
+import {SimulatorModule} from './simulator/simulator.module';
 import {AuthInterceptor} from "./auth/auth.inteceptor";
 
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
@@ -27,6 +28,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
+    SimulatorModule,
     FormsModule,
     MaterialModule,
     MatCardModule,
