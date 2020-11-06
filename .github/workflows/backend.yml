@@ -37,6 +37,7 @@ jobs:
         gcloud auth configure-docker
         docker push eu.gcr.io/health-hack-guardian/guardian-backend:${{ github.event.release.tag_name }}
         gcloud run deploy "guardian-backend" \
+          --project "health-hack-guardian" \
           --region "europe-west6" \
           --image "eu.gcr.io/health-hack-guardian/guardian-backend:${{ github.event.release.tag_name }}" \
           --platform "managed" \
