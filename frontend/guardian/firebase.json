@@ -22,7 +22,7 @@
           "source": "/api/**",
           "run": {
             "serviceId": "guardian-backend",
-            "region": "europe-west6"
+            "region": "europe-west1"
           }
         },
         {
