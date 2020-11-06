@@ -40,6 +40,5 @@ jobs:
           --region "europe-west1" \
           --image "eu.gcr.io/health-hack-guardian/guardian-backend:${{ github.event.release.tag_name }}" \
           --platform "managed" \
-          --min-instances 1 \
           --max-instances 1 \
           --allow-unauthenticated
