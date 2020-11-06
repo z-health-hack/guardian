@@ -1,5 +1,5 @@
 
-name: Publish
+name: Publish Frontend
 
 on:
   release:
