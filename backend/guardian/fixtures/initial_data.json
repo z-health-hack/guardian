@@ -75,8 +75,8 @@
     "model": "api.TimeSeries",
     "id": 1,
     "fields": {
-      "time_series_type": "test",
-      "description": "This is a test",
+      "time_series_type": "strength",
+      "description": "Hand strength",
       "owner_id": 2,
       "authorized_users": [
         1,
