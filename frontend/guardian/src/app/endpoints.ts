@@ -1,6 +1,6 @@
 import {environment} from '../environments/environment';
 
 export const AUTH_URL = `${environment.backendUrl}api-token-auth/`;
-export const API_URL = `${environment.backendUrl}v1/`;
 
-export const TIME_SERIES_URL = `${API_URL}timeseries/`;
+export const TIME_SERIES_URL = `${environment.backendUrl}timeseries`;
+export const USER_PROFILE_URL = `${environment.backendUrl}profile/me`;

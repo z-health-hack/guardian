@@ -6,3 +6,11 @@ export class AuthRequest {
   constructor(public username: string, public password: string) {
   }
 }
+
+export class UserProfile {
+  public username: string;
+  // tslint:disable-next-line:variable-name
+  public first_name: string;
+  // tslint:disable-next-line:variable-name
+  public last_name: string;
+}

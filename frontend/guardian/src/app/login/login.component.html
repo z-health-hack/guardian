@@ -13,6 +13,20 @@
         </mat-form-field>
         <button type="submit" mat-flat-button color="primary">Submit</button>
       </form>
+      <ul>
+        <li>
+          <button mat-flat-button color="secondary" (click)="loginDirectly('patient', 'password')">Login as patient</button>
+        </li>
+        <li>
+          <button mat-flat-button color="secondary" (click)="loginDirectly('care_giver', 'password')">Login as care giver</button>
+        </li>
+        <li>
+          <button mat-flat-button color="secondary" (click)="loginDirectly('physician', 'password')">Login as physician</button>
+        </li>
+        <li>
+          <button mat-flat-button color="secondary" (click)="loginDirectly('superuser', 'password')">Login as superuser</button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
