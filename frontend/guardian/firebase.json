@@ -19,6 +19,13 @@
       ],
       "rewrites": [
         {
+          "source": "/api/**",
+          "run": {
+            "serviceId": "guardian-backend",
+            "region": "europe-west6"
+          }
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
