@@ -19,17 +19,17 @@ from rest_framework import routers
 from rest_framework.authtoken import views as authtoken_views
 from api import views as api_views
 
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', api_views.UserViewSet)
 router.register(r'groups', api_views.GroupViewSet)
-router.register(r'timeseries', api_views.TimeSeriesViewSet, basename='timeseries-detail')
-router.register(r'timeseries', api_views.TimeSeriesViewSet, basename='timeseries-list')
-router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints-list')
-router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints-detail')
+router.register(r'timeseries', api_views.TimeSeriesViewSet,  basename='timeseries')
+router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints')
+router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints')
+
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    path('api/api-token-auth/', authtoken_views.obtain_auth_token),
-    path('api/api-auth/', include('rest_framework.urls'))
+    path('api/v1/api-token-auth/', authtoken_views.obtain_auth_token),
+    path('api/v1/api-auth/', include('rest_framework.urls'))
 ]
