@@ -28,8 +28,8 @@ router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints-
 router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints-detail')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    path('api-token-auth/', authtoken_views.obtain_auth_token),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api/api-token-auth/', authtoken_views.obtain_auth_token),
+    path('api/api-auth/', include('rest_framework.urls'))
 ]
