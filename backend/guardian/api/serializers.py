@@ -16,16 +16,26 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class DataPointSerializer(serializers.HyperlinkedModelSerializer):
-    time_series_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    time_series_id = serializers.IntegerField(required=True)
+    time_stamp = serializers.DateTimeField(required=True)
+    value = serializers.FloatField(required=True)
 
     class Meta:
         model = DataPoint
-        fields = ['time_stamp', 'value', 'time_series_id']
+        fields = ['time_series_id', 'time_stamp', 'value']
+
 
 
 class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
-    data_points = DataPointSerializer(many=True)
+    id = serializers.ReadOnlyField()
+    owner = UserSerializer(required=False)
+    time_series_type = serializers.CharField(required=True)
+    description = serializers.CharField(required=True)
+    data_points = DataPointSerializer(many=True, required=False)
 
     class Meta:
         model = TimeSeries
         fields = ['id', 'owner', 'time_series_type', 'description', 'data_points']
+
+
+

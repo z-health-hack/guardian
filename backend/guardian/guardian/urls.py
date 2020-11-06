@@ -24,7 +24,6 @@ router.register(r'users', api_views.UserViewSet)
 router.register(r'groups', api_views.GroupViewSet)
 router.register(r'timeseries', api_views.TimeSeriesViewSet,  basename='timeseries')
 router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints')
-router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints')
 
 
 urlpatterns = [
