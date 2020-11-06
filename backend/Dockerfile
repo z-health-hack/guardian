@@ -9,4 +9,9 @@ COPY ./guardian .
 RUN pip install pipenv
 RUN pipenv install --system --deploy
 
-CMD exec gunicorn -b :$PORT guardian.wsgi
+RUN apk add --no-cache bash
+COPY entrypoint.sh .
+
+CMD exec python manage.py migrate \
+    && python manage.py loaddata fixtures/initial_data.json \
+    && gunicorn -b :$PORT guardian.wsgi
