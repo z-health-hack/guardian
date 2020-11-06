@@ -1,5 +1,6 @@
-export const BACKEND_URL = 'http://localhost:8000/';
-export const API_URL = `${BACKEND_URL}api/v1/`;
+import {environment} from '../environments/environment';
 
-export const AUTH_URL = `${BACKEND_URL}api-token-auth/`;
-export const TIME_SERIES_URL = `${API_URL}timeseries`;
+export const AUTH_URL = `${environment.backendUrl}api-token-auth/`;
+export const API_URL = `${environment.backendUrl}v1/`;
+
+export const TIME_SERIES_URL = `${API_URL}timeseries/`;
