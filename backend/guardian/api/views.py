@@ -1,10 +1,15 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import permissions
+from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.exceptions import PermissionDenied
-
+from rest_framework import permissions
 from api.models import TimeSeries, DataPoint
 from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerializer, DataPointSerializer
+from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerializer, DataPointSerializer
+from django.contrib.auth.models import User, Group
+from django.http import HttpRequest
+from rest_framework import permissions
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.request import Request
 
 
 class TimeSeriesViewSet(viewsets.ModelViewSet):
@@ -42,6 +47,14 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
+
+
+class ProfileViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def retrieve(self, request, pk=None):
+        serializer = UserSerializer(instance=request.user, context={'request': request})
+        return Response(serializer.data)
 
 
 class GroupViewSet(viewsets.ModelViewSet):
