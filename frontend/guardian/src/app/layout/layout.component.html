@@ -1,0 +1,31 @@
+<!--<div fxLayout="column" fxFlex="1 1 100%">-->
+<!--  <mat-toolbar color="accent" fxLayout="row" fxLayoutAlign="space-between center" class="sticky-header no-print">-->
+<!--    <ng-template>-->
+<!--      <a [routerLink]="['/']">-->
+<!--        <img src="../../assets/logo-white.svg" class="logo" alt="Guardian" />-->
+<!--      </a>-->
+<!--    </ng-template>-->
+<!--    <div>-->
+<!--      <button mat-button [matMenuTriggerFor]="user">-->
+<!--&lt;!&ndash;        <span *ngIf="userProfile$ | async"&ndash;&gt;-->
+<!--&lt;!&ndash;          >{{ (userProfile$ | async).firstName }} {{ (userProfile$ | async).lastName }}&ndash;&gt;-->
+<!--&lt;!&ndash;        </span>&ndash;&gt;-->
+<!--        <span>User: user</span>-->
+<!--        <mat-icon>account_circle</mat-icon>-->
+<!--      </button>-->
+<!--      <mat-menu #user="matMenu" xPosition="before">-->
+<!--        <button mat-menu-item (click)="logout()">{{ 'logout' }}</button>-->
+<!--      </mat-menu>-->
+<!--    </div>-->
+<!--  </mat-toolbar>-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+
+<div class="header">
+  <div class="header-inner">
+    <img src="assets/logo.png" alt="brand">
+  </div>
+</div>
+<div class="body">
+  <router-outlet></router-outlet>
+</div>
