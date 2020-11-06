@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpBackend, HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {AUTH_URL} from '../endpoints';
 import {AuthRequest, AuthToken} from './auth.model';
+import {UserProfileService} from './user-profile.service';
 
 const LOCAL_STORAGE_ACCESS_TOKEN = 'access_token';
 
@@ -12,7 +13,10 @@ const LOCAL_STORAGE_ACCESS_TOKEN = 'access_token';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) {
+  private httpClient: HttpClient;
+
+  constructor(handler: HttpBackend, private userProfileService: UserProfileService) {
+    this.httpClient = new HttpClient(handler);
   }
 
   private static setAccessToken(accessToken: string): void {
@@ -29,6 +33,7 @@ export class AuthService {
       .pipe(
         tap(token => {
           AuthService.setAccessToken(token.token);
+          this.userProfileService.fetchUserProfile();
         })
       );
   }

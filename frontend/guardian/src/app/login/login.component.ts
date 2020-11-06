@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
   login(): void {
     const username = this.form.get('username').value;
     const password = this.form.get('password').value;
+    this.loginDirectly(username, password);
+  }
+
+  loginDirectly(username: string, password: string): void {
 
     if (username && password) {
       this.authService.authenticate(username, password).subscribe(
