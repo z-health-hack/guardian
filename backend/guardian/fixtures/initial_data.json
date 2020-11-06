@@ -1,0 +1,125 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$9dFBGEx5kad0$l6l6qxy3DbLGGQUJG/ANkjFY2VJYXOVTcpTHW9Y8RVg=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "superuser",
+      "first_name": "Super",
+      "last_name": "User",
+      "email": "superuser@health-hack-guardian.web.app",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-01-01T00:00:00.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$9dFBGEx5kad0$l6l6qxy3DbLGGQUJG/ANkjFY2VJYXOVTcpTHW9Y8RVg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "patient",
+      "first_name": "Henry",
+      "last_name": "Samson",
+      "email": "patient@health-hack-guardian.web.app",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-01-01T00:00:00.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$9dFBGEx5kad0$l6l6qxy3DbLGGQUJG/ANkjFY2VJYXOVTcpTHW9Y8RVg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "care_giver",
+      "first_name": "Melesina",
+      "last_name": "Samson",
+      "email": "care_giver@health-hack-guardian.web.app",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-01-01T00:00:00.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$9dFBGEx5kad0$l6l6qxy3DbLGGQUJG/ANkjFY2VJYXOVTcpTHW9Y8RVg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "physician",
+      "first_name": "Pauline",
+      "last_name": "Hollis",
+      "email": "physician@health-hack-guardian.web.app",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-01-01T00:00:00.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "api.TimeSeries",
+    "id": 1,
+    "fields": {
+      "time_series_type": "test",
+      "description": "This is a test",
+      "owner_id": 2,
+      "authorized_users": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 1,
+    "fields": {
+      "time_series_id": 1,
+      "time_stamp": "2020-01-01T00:00:00.000Z",
+      "value": 0.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 2,
+    "fields": {
+      "time_series_id": 1,
+      "time_stamp": "2020-01-02T00:00:00.000Z",
+      "value": 1.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 3,
+    "fields": {
+      "time_series_id": 1,
+      "time_stamp": "2020-01-03T00:00:00.000Z",
+      "value": 0.5
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 4,
+    "fields": {
+      "time_series_id": 1,
+      "time_stamp": "2020-01-04T00:00:00.000Z",
+      "value": 0.75
+    }
+  }
+]
