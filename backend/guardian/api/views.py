@@ -14,7 +14,14 @@ class TimeSeriesViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return TimeSeries.objects.filter(authorized_users__id=user.id).all()
+
+        owner = self.request.query_params.get('owner', None)
+
+        if owner:
+            return TimeSeries.objects.filter(authorized_users__id=user.id, owner=owner).all()
+        else:
+            return TimeSeries.objects.filter(authorized_users__id=user.id).all()
+
 
     def perform_create(self, serializer):
         ts: TimeSeries = serializer.save(owner=self.request.user)
