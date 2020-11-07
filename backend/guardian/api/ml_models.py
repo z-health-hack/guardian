@@ -26,7 +26,7 @@ class PatientRegressor():
         self.variance = None
 
     def _retrieve_data(self):
-        wanted_ts = TimeSeries.objects.filter(time_series_type=self.time_series_type, owner=self.patient.user).first()
+        wanted_ts = TimeSeries.objects.filter(time_series_type=self.time_series_type, owner=self.patient).first()
         query_set = DataPoint.objects.filter(time_series=wanted_ts)\
             .values('value')
         df = pd.DataFrame.from_records(query_set.values('time_stamp', 'value'))
