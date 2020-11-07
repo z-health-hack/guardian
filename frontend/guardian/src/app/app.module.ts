@@ -8,30 +8,32 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {MatCardModule} from '@angular/material/card';
-import {LayoutComponent} from './layout/layout.component';
 import {LoginModule} from './login/login.module';
-import {AuthInterceptor} from './auth/auth.inteceptor';
+import {SimulatorModule} from './simulator/simulator.module';
+import {AuthInterceptor} from "./auth/auth.inteceptor";
 
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LayoutComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
+    SimulatorModule,
     FormsModule,
     MaterialModule,
     MatCardModule,
     BrowserAnimationsModule,
-    PlotlyModule
+    PlotlyModule,
+    NgbModule
   ],
   providers: [
     {

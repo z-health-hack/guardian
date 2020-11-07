@@ -41,6 +41,10 @@ body {
   box-sizing: border-box;
 }
 
+.patientbox-mat {
+  max-width: 200px;
+}
+
 /* Overview */
 
 .patientbox {
