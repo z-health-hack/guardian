@@ -15,15 +15,28 @@
         <h2>{{currentDay.day.format('LL')}} (Day {{currentDay.day.diff(firstDate, 'days')}})</h2>
       </div>
       <div class="card-body">
-        <h4>My steps walked in one go:</h4>
-        <p><ngb-progressbar type="success" [value]="currentDay.step" [max]="currentDay.steps_max">{{currentDay.step}} Steps</ngb-progressbar></p>
-        <h4>My max strength to squeeze a ball:</h4>
-        <p><ngb-progressbar type="info" [value]="currentDay.strength" [max]="currentDay.strength_max">{{currentDay.strength}} Strength</ngb-progressbar></p>
-        <h4>My average heart rate over one day:</h4>
-        <p><ngb-progressbar type="warning" [value]="currentDay.heartRate" [max]="currentDay.heartRate_max">{{currentDay.heartRate}} Avg. Heart Rate</ngb-progressbar></p>
-        <h4>My average blood oxygen saturation over one day:</h4>
-        <p><ngb-progressbar type="danger" [value]="currentDay.bloodOxygen" [max]="currentDay.bloodOxygen_max">{{currentDay.bloodOxygen}} Blood Oxygen Saturation</ngb-progressbar></p>
-        <button mat-button color="primary" (click)="animateDays()">Start Simulation</button>
+        <h4>Steps walked in one go:</h4>
+        <p>
+          <ngb-progressbar type="success" [value]="currentDay.step" [max]="currentDay.steps_max">{{currentDay.step}} Steps</ngb-progressbar>
+        </p>
+        <h4>Max strength to squeeze a ball:</h4>
+        <p>
+          <ngb-progressbar type="info" [value]="currentDay.strength" [max]="currentDay.strength_max">{{currentDay.strength}} Strength</ngb-progressbar>
+        </p>
+        <h4>Average heart rate over one day:</h4>
+        <p>
+          <ngb-progressbar type="warning" [value]="currentDay.heartRate" [max]="currentDay.heartRate_max">{{currentDay.heartRate}} Avg. Heart Rate</ngb-progressbar>
+        </p>
+        <h4>Average blood oxygen saturation over one day:</h4>
+        <p>
+          <ngb-progressbar type="danger" [value]="currentDay.bloodOxygen" [max]="currentDay.bloodOxygen_max">{{currentDay.bloodOxygen}} Blood Oxygen Saturation</ngb-progressbar>
+        </p>
+        <p>
+          <button class="btn btn-outline-primary" (click)="onClick()">{{isRunning ? 'Pause Simulation' : 'Start Simulation'}}</button>
+        </p>
+        <p>
+          <button *ngIf="!isRunning" class="btn btn-outline-secondary" (click)="resetAllData()">{{'Reset All Data'}}</button>
+        </p>
       </div>
     </div>
   </div>

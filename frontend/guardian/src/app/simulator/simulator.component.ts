@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject, timer} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {Subscription, timer} from 'rxjs';
 import {TimeseriesService} from '../timeseries/timeseries.service';
 
 import * as moment from 'moment';
@@ -12,8 +11,9 @@ import * as moment from 'moment';
 })
 export class SimulatorComponent implements OnInit, OnDestroy {
 
-  private unsubscribe$ = new Subject<void>();
+  private timerSubscription: Subscription = null;
 
+  public isRunning = false;
   public firstDate;
   public currentDay;
   private currentIndex = 0;
@@ -40,16 +40,24 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createDays();
+    this.currentDay = this.days[0];
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    this.stopTimer();
+  }
+
+  onClick(): void {
+    if (this.isRunning) {
+      this.stopTimer();
+    } else {
+      this.animateDays();
+    }
   }
 
   animateDays(): void {
-    const subscription = timer(0, 1500)
-      .pipe(takeUntil(this.unsubscribe$))
+    this.stopTimer();
+    this.timerSubscription = timer(0, 1500)
       .subscribe(x => {
         if (this.currentIndex < this.days.length) {
           this.currentDay = this.days[this.currentIndex++];
@@ -66,9 +74,21 @@ export class SimulatorComponent implements OnInit, OnDestroy {
             this.currentDay.day,
             this.currentDay.bloodOxygen).subscribe();
         } else {
-          subscription.unsubscribe();
+          this.stopTimer();
         }
       });
+    this.isRunning = true;
+  }
+
+  private stopTimer(): void {
+    this.timerSubscription?.unsubscribe();
+    this.isRunning = false;
+  }
+
+  resetAllData(): void {
+    this.stopTimer();
+    this.createDays();
+    this.timeseriesService.deleteAll().subscribe();
   }
 
   createDays(): void {
@@ -84,6 +104,7 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
     const today = moment('2020-01-04');
     this.firstDate = today;
+    this.days = [];
     for (let i = 0; i < totalDays; i++) {
       this.days.push({
         day: today.clone().add(i, 'days'),

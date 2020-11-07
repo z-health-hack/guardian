@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {DATAPOINTS_URL, TIME_SERIES_URL} from '../endpoints';
+import {DATAPOINTS_URL, DELETE_ALL_TIME_SERIES_URL, TIME_SERIES_URL} from '../endpoints';
 import {DataPoint, Timeseries} from './timeseries.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
@@ -47,6 +47,10 @@ export class TimeseriesService {
       description
     };
     return this.httpClient.post<Timeseries>(TIME_SERIES_URL, ts);
+  }
+
+  deleteAll(): Observable<void> {
+    return this.httpClient.delete<void>(DELETE_ALL_TIME_SERIES_URL);
   }
 
   pushValue(type, date, value): Observable<DataPoint> {
