@@ -1,5 +1,9 @@
 <div class="row justify-content-md-center">
-  <div class="col-4">
+  <img width="70%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png"/>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="col-4 p-2">
     <div class="detailview-title title-info">Patient Information</div>
     <table *ngIf="patient" class="detailview-table">
       <tbody>
@@ -9,33 +13,32 @@
       </tr>
       <tr>
         <td>Date of birth:</td>
-        <td>01.02.1978</td>
+        <td>{{patientDetail.date_of_birth}}</td>
       </tr>
       <tr>
         <td>Date of diagnosis:</td>
-        <td>03.04.2005</td>
+        <td>{{patientDetail.date_of_diagnosis}}</td>
       </tr>
       <tr>
         <td>Emergency contact:</td>
-        <td>Emma Example<br>Teststr. 5<br>1234 Location</td>
+        <td>{{patientDetail.emergency_contact}}</td>
       </tr>
       <tr>
         <td>Address of residence:</td>
-        <td>Teststr. 5<br>1234 Location</td>
+        <td>{{patientDetail.address}}</td>
       </tr>
       <tr>
         <td>Allergies:</td>
-        <td>&ndash;</td>
+        <td>{{patientDetail.allergies}}</td>
       </tr>
       <tr>
         <td>Notes:</td>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+        <td>{{patientDetail.notes}}</td>
       </tr>
       </tbody>
     </table>
   </div>
-  <div class="col-8">
-    <img width="100%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png"/>
+  <div class="col-8 p-2">
     <div class="detailview-title title-ltm">Short Term Measurements</div>
     <div class="detailview-plot-title">Mobility</div>
     <plotly-plot [data]="mobility" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>

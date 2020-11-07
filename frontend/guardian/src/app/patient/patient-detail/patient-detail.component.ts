@@ -6,7 +6,7 @@ import {TimeseriesService} from '../../timeseries/timeseries.service';
 import {Timeseries} from '../../timeseries/timeseries.model';
 import {Plotly} from 'angular-plotly.js/lib/plotly.interface';
 import {PatientsService} from '../patients.service';
-import {UserProfile} from '../../auth/auth.model';
+import {PatientDetail, UserProfile} from '../../auth/auth.model';
 
 @Component({
   selector: 'app-patient-detail',
@@ -21,11 +21,13 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   private data = new BehaviorSubject<Timeseries[]>([]);
 
   public patient: UserProfile;
+  public patientDetail: PatientDetail;
 
   public bloodOxygen: Plotly.Data[] = [];
   public heartRate: Plotly.Data[] = [];
   public strength: Plotly.Data[] = [];
   public mobility: Plotly.Data[] = [];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +61,8 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     this.id = id;
     this.patientsService.getPatientById(id)
       .subscribe(patient => this.patient = patient);
+    this.patientsService.getPatientDetailsById(id)
+      .subscribe(patientDetail => this.patientDetail = patientDetail);
   }
 
   get getId(): string {

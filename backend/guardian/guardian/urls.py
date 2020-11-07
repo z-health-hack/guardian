@@ -22,6 +22,7 @@ from api import views as api_views
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', api_views.UserViewSet)
 router.register(r'patients', api_views.PatientViewSet)
+router.register(r'patientsdetail', api_views.PatientDetailViewSet, basename='patientsdetail')
 router.register(r'profile', api_views.ProfileViewSet, basename='profile')
 router.register(r'groups', api_views.GroupViewSet)
 router.register(r'timeseries', api_views.TimeSeriesViewSet,  basename='timeseries')

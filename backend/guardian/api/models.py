@@ -13,3 +13,13 @@ class DataPoint(models.Model):
     time_series = models.ForeignKey(TimeSeries, null=False, on_delete=models.CASCADE, related_name='data_points')
     time_stamp = models.DateTimeField()
     value = models.FloatField()
+
+
+class Patient(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient')
+    date_of_birth = models.DateField()
+    date_of_diagnosis = models.DateField()
+    emergency_contact = models.CharField(max_length=512)
+    address = models.CharField(max_length=512)
+    allergies = models.CharField(max_length=512)
+    notes = models.CharField(max_length=5000)

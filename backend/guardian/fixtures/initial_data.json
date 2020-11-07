@@ -36,6 +36,19 @@
     }
   },
   {
+    "model": "api.Patient",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "date_of_birth": "1942-01-08",
+      "date_of_diagnosis": "1963-07-01",
+      "emergency_contact": "Elaine Mason",
+      "address": "6 Little St. Mary's Lane, Cambridge CB2 1RR",
+      "allergies": "-",
+      "notes": "His intellectual strengths were the stuff of awe, but so was his ability to lead not simply a normal life, but an extraordinary one, while suffering with a tremendously debilitating condition."
+    }
+  },
+  {
     "model": "auth.user",
     "pk": 3,
     "fields": {

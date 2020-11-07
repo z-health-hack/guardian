@@ -4,8 +4,9 @@ from rest_framework import viewsets
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
-from api.models import TimeSeries, DataPoint
-from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerializer, DataPointSerializer
+from api.models import TimeSeries, DataPoint, Patient
+from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerializer, DataPointSerializer, \
+    PatientSerializer
 
 
 class TimeSeriesViewSet(viewsets.ModelViewSet):
@@ -52,6 +53,17 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
+
+
+class PatientDetailViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def retrieve(self, request, pk=None):
+        patients = Patient.objects.filter(user_id=pk).all()
+
+        serializer = PatientSerializer(instance=patients[0],
+                                       context={'request': request})
+        return Response(serializer.data)
 
 
 class PatientViewSet(viewsets.ModelViewSet):

@@ -1,12 +1,18 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-from api.models import TimeSeries, DataPoint
+from api.models import TimeSeries, DataPoint, Patient
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'url', 'username', 'first_name', 'last_name', 'email', 'groups']
+
+
+class PatientSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Patient
+        fields = ['date_of_birth', 'date_of_diagnosis', 'emergency_contact', 'address', 'allergies', 'notes']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

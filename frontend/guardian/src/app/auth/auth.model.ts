@@ -15,3 +15,15 @@ export class UserProfile {
   // tslint:disable-next-line:variable-name
   public last_name: string;
 }
+
+export class PatientDetail {
+  // tslint:disable-next-line:variable-name
+  public date_of_birth: string;
+  // tslint:disable-next-line:variable-name
+  public date_of_diagnosis: string;
+  // tslint:disable-next-line:variable-name
+  public emergency_contact: string;
+  public address: string;
+  public allergies: string;
+  public notes: string;
+}
