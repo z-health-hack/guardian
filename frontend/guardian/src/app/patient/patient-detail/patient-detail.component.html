@@ -1,14 +1,14 @@
-<div class="row justify-content-md-center">
-  <img width="70%" style="margin-top: 20px; margin-bottom: 30px;"
+<div *ngIf="stageInformation" class="row justify-content-md-center">
+  <img *ngIf="stageInformation" width="70%" style="margin-top: 20px; margin-bottom: 30px;"
        src="assets/als-progress/ALS%20Progress-Stage-{{stageInformation.current_stage}}.png"/>
   <h2 style="margin-bottom: 20px;">We predict between {{stageInformation.expected_days_min}} and {{stageInformation.expected_days_max}} months until the next stage!</h2>
 </div>
 
 <div class="row justify-content-md-center">
   <div class="col-4 p-2">
-    <div class="patientdetail-inner">
+    <div *ngIf="patient" class="patientdetail-inner">
       <div style="color: white" class="detailview-title title-info">{{patient.first_name}} {{patient.last_name}} </div>
-      <table *ngIf="patient" class="detailview-table">
+      <table *ngIf="patientDetail" class="detailview-table">
         <tbody>
         <tr>
           <td>Date of birth:</td>
@@ -38,7 +38,7 @@
       </table>
     </div>
 
-    <div class="patientdetail-inner">
+    <div *ngIf="stageInformation"  class="patientdetail-inner">
       <div style="color: white" class="detailview-title title-info">Recommendation</div>
       <p *ngFor="let s of stageInformation.suggestions">{{s}}</p>
     </div>
