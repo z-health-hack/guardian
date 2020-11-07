@@ -1,5 +1,7 @@
+from typing import Optional
 import datetime
 import math
+import logging
 from dataclasses import dataclass
 
 from api.ml_models import PatientRegressor, ModelPredictions
@@ -12,8 +14,9 @@ class StagePredictionResult:
     next_stage: Stage
     min_date_until_next_stage: datetime.datetime
     max_date_until_next_stage: datetime.datetime
-    predicted_mobility: ModelPredictions
-    predicted_strength: ModelPredictions
+    predicted_mobility: Optional[ModelPredictions]
+    predicted_strength: Optional[ModelPredictions]
+    prediction_succeded: bool
 
     @property
     def expected_days_min(self):
@@ -75,10 +78,23 @@ def predict_stages(patient):
     patient_regressor_strength = PatientRegressor(patient=patient, time_series_type='strength')
     patient_regressor_mobility = PatientRegressor(patient=patient, time_series_type='mobility')
 
-    predicted_values_strength: ModelPredictions = patient_regressor_strength.fit_predict_n_days(
-        n_days=n_days_prediction)
-    predicted_values_mobility: ModelPredictions = patient_regressor_mobility.fit_predict_n_days(
-        n_days=n_days_prediction)
+    try:
+        predicted_values_strength: ModelPredictions = patient_regressor_strength.fit_predict_n_days(
+            n_days=n_days_prediction)
+        predicted_values_mobility: ModelPredictions = patient_regressor_mobility.fit_predict_n_days(
+            n_days=n_days_prediction)
+
+    except ValueError as e:
+        logging.warning("No values were provided for ML training.")
+        return StagePredictionResult(
+            current_stage=Stage.objects.filter(id=1).first(),
+            next_stage=Stage.objects.filter(id=2).first(),
+            min_date_until_next_stage=datetime.datetime.today(),
+            max_date_until_next_stage=datetime.datetime.today(),
+            predicted_mobility=None,
+            predicted_strength=None,
+            prediction_succeded=False
+        )
 
     stages = Stage.objects.order_by('id').all()
 
@@ -101,7 +117,8 @@ def predict_stages(patient):
             min_date_until_next_stage=0,
             max_date_until_next_stage=0,
             predicted_mobility=predicted_values_mobility,
-            predicted_strength=predicted_values_strength
+            predicted_strength=predicted_values_strength,
+            prediction_succeded=False
         )
 
     date_until_next_stage_strength = determine_min_max_time_until_threshold(predicted_values_strength, next_stage)
@@ -118,7 +135,8 @@ def predict_stages(patient):
         min_date_until_next_stage=min_date_until_next_stage,
         max_date_until_next_stage=max_date_until_next_stage,
         predicted_mobility=predicted_values_mobility,
-        predicted_strength=predicted_values_strength
+        predicted_strength=predicted_values_strength,
+        prediction_succeded=True
     )
 
     return stage_prediction_result
