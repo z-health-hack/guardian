@@ -5,6 +5,8 @@ import {filter, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {TimeseriesService} from '../../timeseries/timeseries.service';
 import {Timeseries} from '../../timeseries/timeseries.model';
 import {Plotly} from 'angular-plotly.js/lib/plotly.interface';
+import {PatientsService} from '../patients.service';
+import {UserProfile} from '../../auth/auth.model';
 
 @Component({
   selector: 'app-patient-detail',
@@ -18,6 +20,8 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   private data = new BehaviorSubject<Timeseries[]>([]);
 
+  public patient: UserProfile;
+
   public bloodOxygen: Plotly.Data[] = [];
   public heartRate: Plotly.Data[] = [];
   public strength: Plotly.Data[] = [];
@@ -25,7 +29,8 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private timeseriesService: TimeseriesService
+    private timeseriesService: TimeseriesService,
+    private patientsService: PatientsService
   ) {
   }
 
@@ -36,7 +41,7 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(params => this.id = params.get('id'));
+      .subscribe(params => this.setId(params.get('id')));
 
     timer(0, 3000)
       .pipe(
@@ -48,6 +53,12 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     this.run('heartRate').subscribe(data => this.heartRate = data);
     this.run('strength').subscribe(data => this.strength = data);
     this.run('mobility').subscribe(data => this.mobility = data);
+  }
+
+  private setId(id: string): void {
+    this.id = id;
+    this.patientsService.getPatientById(id)
+      .subscribe(patient => this.patient = patient);
   }
 
   get getId(): string {

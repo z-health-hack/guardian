@@ -1,11 +1,11 @@
 <div class="row justify-content-md-center">
   <div class="col-4">
-    <div class="detailview-title title-info">Patient {{ getId }} Information</div>
-    <table class="detailview-table">
+    <div class="detailview-title title-info">Patient Information</div>
+    <table *ngIf="patient" class="detailview-table">
       <tbody>
       <tr>
         <td>Name:</td>
-        <td>Max Muster</td>
+        <td>{{patient.first_name}} {{patient.last_name}} ({{patient.username}})</td>
       </tr>
       <tr>
         <td>Date of birth:</td>
@@ -35,7 +35,7 @@
     </table>
   </div>
   <div class="col-8">
-    <img width="100%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png" />
+    <img width="100%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png"/>
     <div class="detailview-title title-ltm">Short Term Measurements</div>
     <div class="detailview-plot-title">Mobility</div>
     <plotly-plot [data]="mobility" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>

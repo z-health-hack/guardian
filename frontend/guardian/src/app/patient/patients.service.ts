@@ -16,4 +16,8 @@ export class PatientsService {
   public getPatients(): Observable<UserProfile[]> {
     return this.httpClient.get<UserProfile[]>(PATIENTS_URL);
   }
+
+  public getPatientById(id: string): Observable<UserProfile> {
+    return this.httpClient.get<UserProfile>(`${PATIENTS_URL}/${id}`);
+  }
 }
