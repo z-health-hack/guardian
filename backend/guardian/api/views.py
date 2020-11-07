@@ -127,6 +127,13 @@ def get_my_profile(request):
     return Response(serializer.data)
 
 
+@api_view(['DELETE'])
+@permission_classes([permissions.IsAuthenticated])
+def delete_all_timeseries(request):
+    DataPoint.objects.filter(time_series__in=TimeSeries.objects.filter(owner=request.user)).all().delete()
+    return Response()
+
+
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all().order_by('id')
     serializer_class = GroupSerializer
