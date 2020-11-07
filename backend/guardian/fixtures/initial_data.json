@@ -25,8 +25,8 @@
       "last_login": null,
       "is_superuser": false,
       "username": "patient",
-      "first_name": "Henry",
-      "last_name": "Samson",
+      "first_name": "Steven",
+      "last_name": "Hawking",
       "email": "patient@health-hack-guardian.web.app",
       "is_staff": false,
       "is_active": true,
@@ -43,8 +43,8 @@
       "last_login": null,
       "is_superuser": false,
       "username": "care_giver",
-      "first_name": "Melesina",
-      "last_name": "Samson",
+      "first_name": "Elaine",
+      "last_name": "Mason",
       "email": "care_giver@health-hack-guardian.web.app",
       "is_staff": false,
       "is_active": true,
@@ -72,6 +72,24 @@
     }
   },
   {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$9dFBGEx5kad0$l6l6qxy3DbLGGQUJG/ANkjFY2VJYXOVTcpTHW9Y8RVg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "patient2",
+      "first_name": "Lou",
+      "last_name": "Gehrig",
+      "email": "patient2@health-hack-guardian.web.app",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-01-01T00:00:00.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
     "model": "api.TimeSeries",
     "id": 1,
     "fields": {
@@ -83,6 +101,20 @@
         2,
         3,
         4
+      ]
+    }
+  },
+  {
+    "model": "api.TimeSeries",
+    "id": 2,
+    "fields": {
+      "time_series_type": "strength",
+      "description": "Hand strength",
+      "owner_id": 5,
+      "authorized_users": [
+        1,
+        4,
+        5
       ]
     }
   },
