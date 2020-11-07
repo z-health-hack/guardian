@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BehaviorSubject, from, Observable, Subject, timer} from 'rxjs';
-import {filter, map, mergeMap, takeUntil, tap} from 'rxjs/operators';
+import {filter, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {TimeseriesService} from '../../timeseries/timeseries.service';
 import {Timeseries} from '../../timeseries/timeseries.model';
 import {Plotly} from 'angular-plotly.js/lib/plotly.interface';
@@ -39,8 +39,9 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
       .subscribe(params => this.id = params.get('id'));
 
     timer(0, 3000)
-      .pipe(takeUntil(this.unsubscribe$))
-      .pipe(mergeMap(() => this.timeseriesService.getAll()))
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        mergeMap(() => this.timeseriesService.getForOwner(this.id)))
       .subscribe(ts => this.data.next(ts));
 
     this.run('bloodOxygen').subscribe(data => this.bloodOxygen = data);
@@ -58,8 +59,7 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
       .pipe(
         mergeMap(ts => from(ts)),
         filter(d => d.time_series_type === type),
-        map(d => PatientDetailComponent.toPlotly(d)),
-        tap(d => console.log(d)));
+        map(d => PatientDetailComponent.toPlotly(d)));
   }
 
   ngOnDestroy(): void {

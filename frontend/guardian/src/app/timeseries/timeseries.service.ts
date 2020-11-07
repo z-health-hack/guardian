@@ -33,6 +33,10 @@ export class TimeseriesService {
     });
   }
 
+  getForOwner(owner: string): Observable<Timeseries[]> {
+    return this.httpClient.get<Timeseries[]>(`${TIME_SERIES_URL}?owner=${owner}`);
+  }
+
   getById(id: number): Observable<Timeseries> {
     return this.httpClient.get<Timeseries>(`${TIME_SERIES_URL}/${id}`);
   }
