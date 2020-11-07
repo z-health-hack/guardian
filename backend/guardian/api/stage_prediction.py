@@ -1,7 +1,7 @@
 import datetime
 import math
 from dataclasses import dataclass
-from api.models import Stage, Patient
+from api.models import Stage
 from api.ml_models import PatientRegressor, ModelPredictions
 
 
@@ -76,7 +76,7 @@ def predict_stages(patient):
     predicted_values_mobility: ModelPredictions = patient_regressor_mobility.fit_predict_n_days(
         n_days=n_days_prediction)
 
-    stages = Stage.objects.order_by('threshold_steps').all()
+    stages = Stage.objects.order_by('id').all()
 
     # Find current stage
     current_stage = None
@@ -93,8 +93,10 @@ def predict_stages(patient):
     date_until_next_stage_strength = determine_min_max_time_until_threshold(predicted_values_strength, next_stage)
     date_until_next_stage_mobility = determine_min_max_time_until_threshold(predicted_values_strength, next_stage)
 
-    min_date_until_next_stage = determine_min([date_until_next_stage_strength['min'], date_until_next_stage_mobility['min']])
-    max_date_until_next_stage = determine_min([date_until_next_stage_strength['max'], date_until_next_stage_mobility['max']])
+    min_date_until_next_stage = determine_min([date_until_next_stage_strength['min'],
+                                               date_until_next_stage_mobility['min']])
+    max_date_until_next_stage = determine_min([date_until_next_stage_strength['max'],
+                                               date_until_next_stage_mobility['max']])
 
     stage_prediction_result = StagePredictionResult(
         current_stage=current_stage,
