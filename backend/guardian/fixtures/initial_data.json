@@ -332,7 +332,7 @@
   },
   {
     "model": "api.Stage",
-    "id": 3,
+    "id": 4,
     "fields": {
       "description": "Nutrition support needed",
       "suggestions": [
@@ -347,7 +347,7 @@
   },
   {
     "model": "api.Stage",
-    "id": 4,
+    "id": 5,
     "fields": {
       "description": "24 hour care",
       "suggestions": [
