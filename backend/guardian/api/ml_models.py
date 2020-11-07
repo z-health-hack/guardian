@@ -1,13 +1,15 @@
 import datetime
-from typing import Optional, Dict, List, Any
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
+from typing import Optional, Any
+
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
+
+from api.models import DataPoint
 from api.models import Patient
 from api.models import TimeSeries
-from api.models import DataPoint
 
 
 class MLMissingTrainDataException(Exception):
@@ -55,8 +57,8 @@ class PatientRegressor:
         X = np.array(self.train_data['rank']).reshape(-1, 1)
         self.model.fit(X=X, y=self.train_data['value'])
         y_fitted = self.model.predict(X)
-        self.variance = np.var(self.train_data['value']-y_fitted)
-        self.last_data_point = np.array(self.train_data['value'])[-1]
+        self.variance = np.var(self.train_data['value'] - y_fitted)
+        self.last_data_point = np.array(self.train_data['rank'])[-1]
         self.current_fitted_value = y_fitted[-1]
 
     def predict(self, n_days) -> ModelPredictions:

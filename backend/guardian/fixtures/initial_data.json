@@ -148,7 +148,7 @@
     "model": "api.TimeSeries",
     "id": 3,
     "fields": {
-      "time_series_type": "steps",
+      "time_series_type": "mobility",
       "description": "Number of steps made",
       "owner_id": 5,
       "authorized_users": [
@@ -162,7 +162,7 @@
     "model": "api.TimeSeries",
     "id": 4,
     "fields": {
-      "time_series_type": "steps",
+      "time_series_type": "mobility",
       "description": "Number of steps made",
       "owner_id": 2,
       "authorized_users": [

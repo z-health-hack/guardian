@@ -1,8 +1,9 @@
 import datetime
 import math
 from dataclasses import dataclass
-from api.models import Stage
+
 from api.ml_models import PatientRegressor, ModelPredictions
+from api.models import Stage
 
 
 @dataclass
@@ -70,9 +71,9 @@ def determine_min_max_time_until_threshold(prediction_values: ModelPredictions, 
 
 
 def predict_stages(patient):
-    n_days_prediction = 180
+    n_days_prediction = 800
     patient_regressor_strength = PatientRegressor(patient=patient, time_series_type='strength')
-    patient_regressor_mobility = PatientRegressor(patient=patient, time_series_type='steps')
+    patient_regressor_mobility = PatientRegressor(patient=patient, time_series_type='mobility')
 
     predicted_values_strength: ModelPredictions = patient_regressor_strength.fit_predict_n_days(
         n_days=n_days_prediction)
@@ -92,6 +93,16 @@ def predict_stages(patient):
         next_stage: Stage = Stage.objects.filter(id=current_stage.id + 1).first()
     else:
         next_stage: Stage = Stage.objects.filter(id=1).first()
+
+    if not next_stage:
+        return StagePredictionResult(
+            current_stage=current_stage,
+            next_stage=current_stage,
+            min_date_until_next_stage=0,
+            max_date_until_next_stage=0,
+            predicted_mobility=predicted_values_mobility,
+            predicted_strength=predicted_values_strength
+        )
 
     date_until_next_stage_strength = determine_min_max_time_until_threshold(predicted_values_strength, next_stage)
     date_until_next_stage_mobility = determine_min_max_time_until_threshold(predicted_values_strength, next_stage)

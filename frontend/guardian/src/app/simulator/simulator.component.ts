@@ -57,7 +57,7 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
   animateDays(): void {
     this.stopTimer();
-    this.timerSubscription = timer(0, 1000)
+    this.timerSubscription = timer(0, 200)
       .subscribe(x => {
         if (this.currentIndex < this.days.length) {
           this.currentDay = this.days[this.currentIndex++];
@@ -93,8 +93,8 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
   createDays(): void {
     const totalDays = 700;
-    const maxSteps = 1200;
-    const maxStrength = 4;
+    const maxSteps = 10000;
+    const maxStrength = 60;
     const maxHeartRate = 75;
     const maxBloodOxygen = 98;
     const steps = this.simulateLinearSteps(maxSteps, 344, totalDays, 0.2);
