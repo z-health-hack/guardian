@@ -4,9 +4,9 @@
     <img src="assets/logo3.png" width="130" height="55" class="d-inline-block align-top" style="margin-right: 10px; margin-top: -10px;"
          alt="">
   </a>
-  <nav *ngIf="(userProfile$ | async)" class="my-2 my-md-0 mr-md-3" >
-    <a class="p-2 text-dark" href="#" routerLink="patients" style="color: white !important;">Patients</a>
-    <a class="p-2 text-dark" href="#" routerLink="simulator" target="_blank" style="color: white !important;">Simulator</a>
+  <nav *ngIf="(userProfile$ | async)" class="my-2 my-md-0 mr-md-3">
+    <a *ngIf="(userProfile$ | async).username==='physician'" class="p-2 text-dark" href="#" routerLink="patients" style="color: white !important;">Patients</a>
+    <a *ngIf="(userProfile$ | async).username==='patient'" class="p-2 text-dark" href="#" routerLink="simulator" target="_blank" style="color: white !important;">Simulator</a>
   </nav>
   <div *ngIf="(userProfile$ | async)">
     <button mat-button [matMenuTriggerFor]="user">
