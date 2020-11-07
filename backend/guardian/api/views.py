@@ -22,7 +22,6 @@ class TimeSeriesViewSet(viewsets.ModelViewSet):
         else:
             return TimeSeries.objects.filter(authorized_users__id=user.id).all()
 
-
     def perform_create(self, serializer):
         ts: TimeSeries = serializer.save(owner=self.request.user)
 
@@ -53,6 +52,22 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
+
+
+class PatientViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('id')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+
+        owners_of_viewable_series = TimeSeries.objects \
+            .filter(authorized_users__id=user.id) \
+            .values_list('owner', flat=True) \
+            .distinct()
+
+        return User.objects.filter(pk__in=owners_of_viewable_series).all()
 
 
 class ProfileViewSet(viewsets.ViewSet):
