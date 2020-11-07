@@ -1,8 +1,6 @@
-<!--<p>patient-detail: {{ getId }}</p>-->
-<div class="detailview">
-  <div>
+<div class="row justify-content-md-center">
+  <div class="col-4">
     <div class="detailview-title title-info">Patient {{ getId }} Information</div>
-
     <table class="detailview-table">
       <tbody>
       <tr>
@@ -35,68 +33,17 @@
       </tr>
       </tbody>
     </table>
-
   </div>
-  <div>
-    <div class="detailview-title title-stm">Short Term Measurements</div>
-
-    <div class="detailview-plot-title">Blood oxygen saturation</div>
-    <div class="detailview-plot">
-      <div class="detailview-plot-inner">
-        <plotly-plot [data]="bloodOxygen"></plotly-plot>
-      </div>
-    </div>
-
-    <div class="detailview-plot-title">Heart rate</div>
-    <div class="detailview-plot">
-      <div class="detailview-plot-inner">
-        <plotly-plot [data]="heartRate"></plotly-plot>
-      </div>
-    </div>
-
-  </div>
-  <div>
-    <div class="detailview-title title-ltm">Long Term Measurements</div>
-
-    <div class="detailview-plot-title">Strength</div>
-    <div class="detailview-plot">
-      <div class="detailview-plot-inner">
-        <plotly-plot [data]="strength"></plotly-plot>
-      </div>
-    </div>
-
-    <div class="detailview-prediction">
-      <div class="detailview-prediction-title">Predictions:</div>
-      <div class="detailview-prediction-item">&ndash;&nbsp;&nbsp;Hand pressure will likely drop below x within the next 4 to 10 weeks</div>
-    </div>
-
+  <div class="col-8">
+    <img width="100%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png" />
+    <div class="detailview-title title-ltm">Short Term Measurements</div>
     <div class="detailview-plot-title">Mobility</div>
-    <div class="detailview-plot">
-      <div class="detailview-plot-inner">
-        <plotly-plot [data]="mobility"></plotly-plot>
-      </div>
-    </div>
-
+    <plotly-plot [data]="mobility" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <div class="detailview-plot-title">Strength</div>
+    <plotly-plot [data]="strength" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <div class="detailview-plot-title">Blood Oxygen Saturation</div>
+    <plotly-plot [data]="bloodOxygen" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <div class="detailview-plot-title">Avg. Heart Rate per Day</div>
+    <plotly-plot [data]="heartRate" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
   </div>
 </div>
-
-<!--<script>-->
-<!--  let graph_divs = document.querySelectorAll('.detailview-plot-inner');-->
-<!--  graph_divs.forEach(graph_div => {-->
-<!--    Plotly.newPlot(-->
-<!--      graph_div,-->
-<!--      [-->
-<!--        {-->
-<!--          x: [1, 2, 3, 4, 5],-->
-<!--          y: [5, 3, 4, 6, 4]-->
-<!--        }-->
-<!--      ],-->
-<!--      {-->
-<!--        margin: { t: 0, l: 0, r: 0, b: 0 }-->
-<!--      },-->
-<!--      {-->
-<!--        responsive: true-->
-<!--      }-->
-<!--    );-->
-<!--  });-->
-<!--</script>-->
