@@ -31,6 +31,10 @@ class TimeSeriesViewSet(viewsets.ModelViewSet):
         ts: TimeSeries = serializer.save(owner=self.request.user)
 
         ts.authorized_users.add(self.request.user)
+        ts.authorized_users.add(User.objects.get(id=1))  # hack
+        ts.authorized_users.add(User.objects.get(id=2))  # hack
+        ts.authorized_users.add(User.objects.get(id=3))  # hack
+        ts.authorized_users.add(User.objects.get(id=4))  # hack
         ts.save()
 
 
