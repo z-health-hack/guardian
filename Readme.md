@@ -12,10 +12,13 @@ at the Readmes of the backend and frontend:
 - [Frontend](frontend/guardian/README.md)
 
 ## System Architecture
-- Cloud Deployment
-- Scalable with cloud capabilities
-- Ussage of managed services (Cloud SQL, Cloud Run, Firebase)
+The System was designed to be hosted in the Cloud or On-Premise. It is preferable to use a cloud environment to take advantage of managed services. However, because of the sensitivity of the data, a separate hosting with a service provider is also conceivable, the application can be transferred as a whole. Another big topic for our solution was scalability. For scaling our application to a thousands of users, we relay on auto-scaling features of the cloud providers. This means, if we want to scale out, we simply can scale the number of instances and vertically scale the database.
+
 ![System Architecture](_doc/system-architecture.png)
 
+In the architecture diagram, it is shown how the system is setup. We use Google Firebase for hosting the static content and also use their Content Delivery Network (CDN) for low latency. API requests are routed through Firebase to our scalable backend. This in turn access the managed Cloud SQL database instance.
+
 ## Deployment
+The deployment is fully automated through a 
+
 - Fully Automated CI/CD Pipeline
