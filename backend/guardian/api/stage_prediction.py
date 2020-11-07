@@ -84,7 +84,7 @@ def predict_stages(patient):
         predicted_values_mobility: ModelPredictions = patient_regressor_mobility.fit_predict_n_days(
             n_days=n_days_prediction)
 
-    except ValueError as e:
+    except KeyError as e:
         logging.warning("No values were provided for ML training.")
         return StagePredictionResult(
             current_stage=Stage.objects.filter(id=1).first(),
