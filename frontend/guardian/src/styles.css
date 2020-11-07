@@ -31,3 +31,10 @@ h3 {
   font-size: 1.25rem !important;
   font-weight: 300 !important;
 }
+
+body.login {
+  background-image: url('assets/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

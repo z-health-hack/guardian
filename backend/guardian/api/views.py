@@ -112,13 +112,23 @@ def get_stage(request, patient_id):
 
     stage_prediction_results = predict_stages(patient)
 
-    return JsonResponse({
-        'current_stage': stage_prediction_results.current_stage.id,
-        'next_stage': stage_prediction_results.next_stage.id,
-        'expected_days_min': stage_prediction_results.expected_weeks_min,
-        'expected_days_max': stage_prediction_results.expected_weeks_max,
-        'suggestions': stage_prediction_results.next_stage.suggestions
-    })
+    if stage_prediction_results.prediction_succeded:
+        return JsonResponse({
+            'current_stage': stage_prediction_results.current_stage.id,
+            'next_stage': stage_prediction_results.next_stage.id,
+            'expected_days_min': stage_prediction_results.expected_weeks_min,
+            'expected_days_max': stage_prediction_results.expected_weeks_max,
+            'suggestions': stage_prediction_results.next_stage.suggestions
+        })
+
+    else:
+        return JsonResponse({
+            'current_stage': stage_prediction_results.current_stage.id,
+            'next_stage': stage_prediction_results.next_stage.id,
+            'expected_days_min': -1,
+            'expected_days_max': -1,
+            'suggestions': stage_prediction_results.next_stage.suggestions
+        })
 
 
 @api_view(['GET'])
