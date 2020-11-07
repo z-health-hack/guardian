@@ -36,6 +36,9 @@ class StagePredictionResult:
 
     @staticmethod
     def _subtract_datetimes(start_date, end_date):
+        if not isinstance(end_date, datetime.datetime):
+            return -1
+
         return (end_date.replace(tzinfo=None) - start_date.replace(tzinfo=None)).days
 
 

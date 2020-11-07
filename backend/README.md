@@ -1,4 +1,4 @@
-# Guardian Angel - Backend
+# Hawking's Mate - Backend
 
 Description of the Guardian Angel backend.
 
