@@ -292,7 +292,7 @@
           "link": "https://www.google.com/maps?q=physiotherapie"
         }
       ],
-      "threshold_steps": 80000,
+      "threshold_steps": 8000,
       "threshold_strength": 40
     }
   },
