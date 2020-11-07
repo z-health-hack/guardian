@@ -1,16 +1,16 @@
 import {ActivatedRoute, Router} from '@angular/router';
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RETURN_URL_PARAM} from '../auth/auth.guard';
 import {AuthService} from '../auth/auth.service';
-import {SnackBarService} from "../snack-bar.service";
+import {SnackBarService} from '../snack-bar.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   form: FormGroup;
   returnUrl: string;
 
@@ -31,6 +31,11 @@ export class LoginComponent implements OnInit {
     // router.navigate only permits known routes, so injecting another domain in the queryParam is not possible
     const desiredReturnUrl = this.route.snapshot.queryParams[RETURN_URL_PARAM];
     this.returnUrl = desiredReturnUrl || '/';
+    document.querySelector('body').classList.add('login');
+  }
+
+  ngOnDestroy(): void {
+    document.querySelector('body').classList.remove('login');
   }
 
   login(): void {
