@@ -16,8 +16,8 @@ export class AuthInterceptor implements HttpInterceptor {
   private static cloneRequestWithAccessToken(request: HttpRequest<any>, accessToken: string): HttpRequest<any> {
     return request.clone({
       setHeaders: {
-        Authorization: 'Token ' + accessToken,
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
+        Authorization: 'Token ' + accessToken
+        // ,'Cache-Control': 'no-cache, no-store, must-revalidate'
       }
     });
   }

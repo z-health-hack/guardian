@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {timer} from 'rxjs';
-import {mergeMap, takeUntil} from 'rxjs/operators';
-import {toInteger} from '@ng-bootstrap/ng-bootstrap/util/util';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject, timer} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import {TimeseriesService} from '../timeseries/timeseries.service';
 
 import * as moment from 'moment';
@@ -11,12 +10,15 @@ import * as moment from 'moment';
   templateUrl: './simulator.component.html',
   styleUrls: ['./simulator.component.css']
 })
-export class SimulatorComponent implements OnInit {
+export class SimulatorComponent implements OnInit, OnDestroy {
+
+  private unsubscribe$ = new Subject<void>();
 
   public firstDate;
   public currentDay;
   private currentIndex = 0;
   private days = [];
+
   constructor(private timeseriesService: TimeseriesService) {
     this.timeseriesService.getAll().subscribe(ts => {
       this.checkAndCreateTs('strength', 'Hand strength');
@@ -40,8 +42,14 @@ export class SimulatorComponent implements OnInit {
     this.createDays();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   animateDays(): void {
-    const subscription = timer(0, 500)
+    const subscription = timer(0, 1500)
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(x => {
         if (this.currentIndex < this.days.length) {
           this.currentDay = this.days[this.currentIndex++];
@@ -91,7 +99,7 @@ export class SimulatorComponent implements OnInit {
     }
   }
 
-  simulateLinearSteps(startValue, zeroOutDay, endDay, variant, round= true): number[]  {
+  simulateLinearSteps(startValue, zeroOutDay, endDay, variant, round = true): number[] {
     const delta = (startValue / zeroOutDay) * -1;
 
     const y = [];
