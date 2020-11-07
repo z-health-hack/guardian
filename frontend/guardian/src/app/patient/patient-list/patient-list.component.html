@@ -1,51 +1,51 @@
 <div class="body-inner" style="display:flex; flex-direction: row;">
 
-<!--  <mat-card class="patientbox-mat">-->
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Max Muster</mat-card-title>-->
-<!--    </mat-card-header>-->
-<!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
-<!--    <mat-card-content>-->
-<!--      <p>Current State: 5</p>-->
-<!--      <p>No Alarm</p>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
+  <!--  <mat-card class="patientbox-mat">-->
+  <!--    <mat-card-header>-->
+  <!--      <mat-card-title>Max Muster</mat-card-title>-->
+  <!--    </mat-card-header>-->
+  <!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
+  <!--    <mat-card-content>-->
+  <!--      <p>Current State: 5</p>-->
+  <!--      <p>No Alarm</p>-->
+  <!--    </mat-card-content>-->
+  <!--  </mat-card>-->
 
-<!--  <mat-card class="patientbox-mat">-->
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Max Muster</mat-card-title>-->
-<!--    </mat-card-header>-->
-<!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
-<!--    <mat-card-content>-->
-<!--      <p>Current State: 5</p>-->
-<!--      <p>No Alarm</p>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
+  <!--  <mat-card class="patientbox-mat">-->
+  <!--    <mat-card-header>-->
+  <!--      <mat-card-title>Max Muster</mat-card-title>-->
+  <!--    </mat-card-header>-->
+  <!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
+  <!--    <mat-card-content>-->
+  <!--      <p>Current State: 5</p>-->
+  <!--      <p>No Alarm</p>-->
+  <!--    </mat-card-content>-->
+  <!--  </mat-card>-->
 
-<!--  <mat-card class="patientbox-mat">-->
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Max Muster</mat-card-title>-->
-<!--    </mat-card-header>-->
-<!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
-<!--    <mat-card-content>-->
-<!--      <p>Current State: 5</p>-->
-<!--      <p>No Alarm</p>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
+  <!--  <mat-card class="patientbox-mat">-->
+  <!--    <mat-card-header>-->
+  <!--      <mat-card-title>Max Muster</mat-card-title>-->
+  <!--    </mat-card-header>-->
+  <!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
+  <!--    <mat-card-content>-->
+  <!--      <p>Current State: 5</p>-->
+  <!--      <p>No Alarm</p>-->
+  <!--    </mat-card-content>-->
+  <!--  </mat-card>-->
 
-<!--  <mat-card class="patientbox-mat">-->
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Max Muster</mat-card-title>-->
-<!--    </mat-card-header>-->
-<!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
-<!--    <mat-card-content>-->
-<!--      <p>Current State: 5</p>-->
-<!--      <p>No Alarm</p>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
+  <!--  <mat-card class="patientbox-mat">-->
+  <!--    <mat-card-header>-->
+  <!--      <mat-card-title>Max Muster</mat-card-title>-->
+  <!--    </mat-card-header>-->
+  <!--    <img mat-card-image src="assets/person.jpg" alt="avatar">-->
+  <!--    <mat-card-content>-->
+  <!--      <p>Current State: 5</p>-->
+  <!--      <p>No Alarm</p>-->
+  <!--    </mat-card-content>-->
+  <!--  </mat-card>-->
 
   <div *ngFor="let patient of patients" class="patientbox" [routerLink]="['/patients/detail', patient.id]">
-    <img src="assets/person.jpg" alt="avatar">
+    <img src="{{getImagePath(patient)}}" alt="avatar">
     <div class="patientbox-name">{{patient.first_name}} {{patient.last_name}}</div>
     <div class="patientbox-state">Current State: 3</div>
     <div class="patientbox-alarm">No Alarm</div>
