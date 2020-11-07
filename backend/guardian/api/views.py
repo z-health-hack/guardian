@@ -2,8 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.http import JsonResponse
 from rest_framework import permissions
 from rest_framework import viewsets
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.decorators import permission_classes, authentication_classes, api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
@@ -101,6 +100,7 @@ class StageViewSet(viewsets.ViewSet):
 
 
 @api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
 def get_stage(request, patient_id):
     patient = PatientViewSet.get_patients_for_user(request.user.id).get(id=patient_id)
     # ...
@@ -112,6 +112,13 @@ def get_stage(request, patient_id):
         'suggestions': [
             'Buy a wheelchair in the next few weeks.'
         ]})
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def get_my_profile(request):
+    serializer = UserSerializer(instance=request.user, context={'request': request})
+    return Response(serializer.data)
 
 
 class GroupViewSet(viewsets.ModelViewSet):
