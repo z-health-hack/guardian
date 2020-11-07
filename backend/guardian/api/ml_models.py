@@ -41,7 +41,7 @@ class PatientRegressor():
         self.model.fit(X=X, y=self.train_data['value'])
         self.last_data_point = self.train_data['rank'].max()
 
-    def predict(self, n_days=30):
+    def predict(self, n_days):
         if not self.model:
             raise MLNotTrainedException("ML model must be trained before prediction is executed.")
 
@@ -51,3 +51,7 @@ class PatientRegressor():
         predicted_values = self.model.predict(prediction_points)
         date_values = [start_date + datetime.timedelta(days=i) for i in range(1, n_days+1)]
         return dict(zip(date_values, predicted_values))
+
+    def fit_predict_n_days(self, n_days):
+        self.fit()
+        return self.predict(n_days)
