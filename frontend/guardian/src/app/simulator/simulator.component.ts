@@ -57,7 +57,7 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
   animateDays(): void {
     this.stopTimer();
-    this.timerSubscription = timer(0, 1500)
+    this.timerSubscription = timer(0, 1000)
       .subscribe(x => {
         if (this.currentIndex < this.days.length) {
           this.currentDay = this.days[this.currentIndex++];
