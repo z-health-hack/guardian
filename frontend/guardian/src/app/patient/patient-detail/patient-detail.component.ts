@@ -7,6 +7,8 @@ import {Timeseries} from '../../timeseries/timeseries.model';
 import {Plotly} from 'angular-plotly.js/lib/plotly.interface';
 import {PatientsService} from '../patients.service';
 import {PatientDetail, UserProfile} from '../../auth/auth.model';
+import {StageInformation} from '../../timeseries/stageinformation.model';
+import {StageInformationService} from '../../timeseries/stageinformation.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -28,11 +30,13 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   public strength: Plotly.Data[] = [];
   public mobility: Plotly.Data[] = [];
 
+  public stageInformation: StageInformation;
 
   constructor(
     private route: ActivatedRoute,
     private timeseriesService: TimeseriesService,
-    private patientsService: PatientsService
+    private patientsService: PatientsService,
+    private stageInformationService: StageInformationService
   ) {
   }
 
@@ -51,7 +55,15 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
         mergeMap(() => this.timeseriesService.getForOwner(this.id)))
       .subscribe(ts => this.data.next(ts));
 
-    this.run('bloodOxygen').subscribe(data => this.bloodOxygen = data);
+    timer(0, 3000)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        mergeMap(() => this.stageInformationService.getStateInformation(this.id)))
+      .subscribe(si => {this.stageInformation = si; });
+
+    this.run('bloodOxygen').subscribe(data => {
+      this.bloodOxygen = data;
+    });
     this.run('heartRate').subscribe(data => this.heartRate = data);
     this.run('strength').subscribe(data => this.strength = data);
     this.run('mobility').subscribe(data => this.mobility = data);

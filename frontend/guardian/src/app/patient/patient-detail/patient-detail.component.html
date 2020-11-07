@@ -1,52 +1,57 @@
 <div class="row justify-content-md-center">
-  <img width="70%" style="margin: 20px;" src="assets/als-progress/ALS%20Progress-Stage%202.png"/>
+  <img width="70%" style="margin-top: 20px; margin-bottom: 30px;"
+       src="assets/als-progress/ALS%20Progress-Stage-{{stageInformation.current_stage}}.png"/>
+  <h2 style="margin-bottom: 20px;">We predict between {{stageInformation.expected_days_min}} and {{stageInformation.expected_days_max}} months until the next stage!</h2>
 </div>
 
 <div class="row justify-content-md-center">
   <div class="col-4 p-2">
-    <div class="detailview-title title-info">Patient Information</div>
-    <table *ngIf="patient" class="detailview-table">
-      <tbody>
-      <tr>
-        <td>Name:</td>
-        <td>{{patient.first_name}} {{patient.last_name}} ({{patient.username}})</td>
-      </tr>
-      <tr>
-        <td>Date of birth:</td>
-        <td>{{patientDetail.date_of_birth}}</td>
-      </tr>
-      <tr>
-        <td>Date of diagnosis:</td>
-        <td>{{patientDetail.date_of_diagnosis}}</td>
-      </tr>
-      <tr>
-        <td>Emergency contact:</td>
-        <td>{{patientDetail.emergency_contact}}</td>
-      </tr>
-      <tr>
-        <td>Address of residence:</td>
-        <td>{{patientDetail.address}}</td>
-      </tr>
-      <tr>
-        <td>Allergies:</td>
-        <td>{{patientDetail.allergies}}</td>
-      </tr>
-      <tr>
-        <td>Notes:</td>
-        <td>{{patientDetail.notes}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="patientdetail-inner">
+      <div style="color: white" class="detailview-title title-info">{{patient.first_name}} {{patient.last_name}} </div>
+      <table *ngIf="patient" class="detailview-table">
+        <tbody>
+        <tr>
+          <td>Date of birth:</td>
+          <td>{{patientDetail.date_of_birth}}</td>
+        </tr>
+        <tr>
+          <td>Date of diagnosis:</td>
+          <td>{{patientDetail.date_of_diagnosis}}</td>
+        </tr>
+        <tr>
+          <td>Emergency contact:</td>
+          <td>{{patientDetail.emergency_contact}}</td>
+        </tr>
+        <tr>
+          <td>Address of residence:</td>
+          <td>{{patientDetail.address}}</td>
+        </tr>
+        <tr>
+          <td>Allergies:</td>
+          <td>{{patientDetail.allergies}}</td>
+        </tr>
+        <tr>
+          <td>Notes:</td>
+          <td>{{patientDetail.notes}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="patientdetail-inner">
+      <div style="color: white" class="detailview-title title-info">Recommendation</div>
+      <p *ngFor="let s of stageInformation.suggestions">{{s}}</p>
+    </div>
   </div>
   <div class="col-8 p-2">
-    <div class="detailview-title title-ltm">Short Term Measurements</div>
+    <div style="margin-left: 20px" class="detailview-title title-ltm">My Data</div>
     <div class="detailview-plot-title">Mobility</div>
-    <plotly-plot [data]="mobility" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <plotly-plot [data]="mobility" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250, plot_bgcolor: '#f3f2f8', paper_bgcolor: '#f3f2f8'}"></plotly-plot>
     <div class="detailview-plot-title">Strength</div>
-    <plotly-plot [data]="strength" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <plotly-plot [data]="strength" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250, plot_bgcolor: '#f3f2f8', paper_bgcolor: '#f3f2f8'}"></plotly-plot>
     <div class="detailview-plot-title">Blood Oxygen Saturation</div>
-    <plotly-plot [data]="bloodOxygen" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <plotly-plot [data]="bloodOxygen" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250, plot_bgcolor: '#f3f2f8', paper_bgcolor: '#f3f2f8'}"></plotly-plot>
     <div class="detailview-plot-title">Avg. Heart Rate per Day</div>
-    <plotly-plot [data]="heartRate" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250}"></plotly-plot>
+    <plotly-plot [data]="heartRate" [layout]="{margin: {l: 80, r: 80, t: 10, b: 20}, height: 250, plot_bgcolor: '#f3f2f8', paper_bgcolor: '#f3f2f8'}"></plotly-plot>
   </div>
 </div>
