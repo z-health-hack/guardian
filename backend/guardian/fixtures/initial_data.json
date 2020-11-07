@@ -179,5 +179,66 @@
       "time_stamp": "2020-01-04T00:00:00.000Z",
       "value": 0.75
     }
+  },
+  {
+    "model": "api.Stage",
+    "id": 1,
+    "fields":{
+      "description": "Numb Feeldings",
+      "suggestions": [
+        "Get Physio Therapy"
+      ],
+      "threshold_steps": 5000,
+      "threshold_strength": 10
+    }
+  },
+  {
+    "model": "api.Stage",
+    "id": 2,
+    "fields":{
+      "description": "Walking on crutches",
+      "suggestions": [
+        "Get crutches"
+      ],
+      "threshold_steps": 1000,
+      "threshold_strength": 10
+    }
+  },
+  {
+    "model": "api.Stage",
+    "id": 3,
+    "fields": {
+      "description": "Sitting in a wheel chair",
+      "suggestions": [
+        "Get a wheel chair",
+        "Work on the accessibility of the apartment"
+      ],
+      "threshold_steps": 100,
+      "threshold_strength": 5
+    }
+  },
+  {
+    "model": "api.Stage",
+    "id": 3,
+    "fields": {
+      "description": "Nutrition support needed",
+      "suggestions": [
+        "Organize assistance during meals"
+      ],
+      "threshold_steps": 100,
+      "threshold_strength": 1
+    }
+  },
+  {
+    "model": "api.Stage",
+    "id": 4,
+    "fields": {
+      "description": "24 hour care",
+      "suggestions": [
+        "Organize a place where 24 hour care can be provided."
+      ],
+      "threshold_steps": 0,
+      "threshold_strength": 0
+    }
   }
 ]

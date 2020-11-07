@@ -25,7 +25,8 @@ class Patient(models.Model):
     notes = models.CharField(max_length=5000)
 
 
-class Stages(models.Model):
+class Stage(models.Model):
+    id = models.IntegerField(primary_key=True)
     description = models.CharField(max_length=1024)
     suggestions = models.JSONField()
     threshold_steps = models.IntegerField()
