@@ -48,5 +48,6 @@ export class AuthService {
 
   logout(): void {
     AuthService.removeToken();
+    this.userProfileService.removeUserProfile();
   }
 }

@@ -2,13 +2,11 @@
   <a class="navbar-brand mr-md-auto" href="#" style="padding-top: 10px;">
     <img src="assets/logo.png" width="40" height="40" class="d-inline-block align-top" style="margin-right: 10px; margin-top: -10px;"
          alt="">
-    Gehrig’s Mate
+    Hawking’s Mate
   </a>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="#">Final Manager</a>
-    <a class="p-2 text-dark" href="#">Shooter Portal</a>
-    <a class="p-2 text-dark" href="#">SCATT Portal</a>
-    <!--    <a class="p-2 text-dark" href="#">Pricing</a>-->
+  <nav *ngIf="(userProfile$ | async)" class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#" routerLink="patients">Patients</a>
+    <a class="p-2 text-dark" href="#" routerLink="simulator" target="_blank">Simulator</a>
   </nav>
   <div *ngIf="(userProfile$ | async)">
     <button mat-button [matMenuTriggerFor]="user">
