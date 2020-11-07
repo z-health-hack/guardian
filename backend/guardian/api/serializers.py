@@ -6,7 +6,7 @@ from api.models import TimeSeries, DataPoint
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'first_name', 'last_name', 'email', 'groups']
+        fields = ['id', 'url', 'username', 'first_name', 'last_name', 'email', 'groups']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

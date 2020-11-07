@@ -11,12 +11,15 @@
   <div class="col-8">
     <div class="card text-center">
       <div class="card-header">
-        <p>Day 1</p>
+        <h2>Day {{currentDay.day}}</h2>
       </div>
       <div class="card-body">
-        <h5 class="card-title">Portal</h5>
-        <p class="card-text">Get insights into your past trainings and competitions down to every single shoot</p>
-        <button class="btn btn-primary" [routerLink]="'/shooter-dashboard'">Open Portal!</button>
+        <h4>Steps walked in one go:</h4>
+        <p><ngb-progressbar type="success" [value]="currentDay.steps" [max]="currentDay.steps_max">{{currentDay.steps}} Steps</ngb-progressbar></p>
+        <p><ngb-progressbar type="info" [value]="50"></ngb-progressbar></p>
+        <p><ngb-progressbar type="warning" [value]="150" [max]="200"></ngb-progressbar></p>
+        <p><ngb-progressbar type="danger" [value]="150" [max]="150"></ngb-progressbar></p>
+        <button mat-button color="primary" (click)="animateDays()">Start Simulation</button>
       </div>
     </div>
   </div>

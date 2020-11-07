@@ -8,6 +8,7 @@ export class AuthRequest {
 }
 
 export class UserProfile {
+  public id: number;
   public username: string;
   // tslint:disable-next-line:variable-name
   public first_name: string;

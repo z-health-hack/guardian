@@ -33,7 +33,7 @@ class DataPointViewSet(viewsets.ModelViewSet):
         user = self.request.user
         series = TimeSeries.objects.filter(id=serializer.validated_data['time_series_id'],
                                            owner=user)
-        if series.exists():
+        if not series.exists():
             raise PermissionDenied(detail='Time series not owned by you')
 
         serializer.save()

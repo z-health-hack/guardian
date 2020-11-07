@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {TIME_SERIES_URL} from '../endpoints';
-import {Timeseries} from './timeseries.model';
+import {DATAPOINTS_URL, TIME_SERIES_URL} from '../endpoints';
+import {DataPoint, Timeseries} from './timeseries.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {tap} from 'rxjs/operators';
+import {UserProfileService} from '../auth/user-profile.service';
 
 
 @Injectable({
@@ -10,14 +12,37 @@ import {HttpClient} from '@angular/common/http';
 })
 export class TimeseriesService {
 
-  constructor(private httpClient: HttpClient) {
+  typeIDMap = {};
+
+  constructor(private httpClient: HttpClient, private profileService: UserProfileService) {
+
   }
 
   getAll(): Observable<Timeseries[]> {
-    return this.httpClient.get<Timeseries[]>(TIME_SERIES_URL);
+    return this.httpClient.get<Timeseries[]>(TIME_SERIES_URL)
+      .pipe(tap(ts => this.storeTimeSeries(ts)));
+  }
+
+  storeTimeSeries(ts: Timeseries[]): void {
+    this.profileService.userProfile$.subscribe(up => {
+      for (const t of ts) {
+        if (t.owner.id === up.id) {
+          this.typeIDMap[t.time_series_type] = t.id;
+        }
+      }
+    });
   }
 
   getById(id: number): Observable<Timeseries> {
     return this.httpClient.get<Timeseries>(`${TIME_SERIES_URL}/${id}`);
+  }
+
+  pushValue(type, date, value): Observable<DataPoint> {
+    const dataPoint = {
+      time_series_id: this.typeIDMap[type],
+      time_stamp: date.toDate(),
+      value
+    };
+    return this.httpClient.post<DataPoint>(DATAPOINTS_URL, dataPoint);
   }
 }
