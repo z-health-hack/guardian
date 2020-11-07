@@ -23,3 +23,11 @@ class Patient(models.Model):
     address = models.CharField(max_length=512)
     allergies = models.CharField(max_length=512)
     notes = models.CharField(max_length=5000)
+
+
+class Stage(models.Model):
+    id = models.IntegerField(primary_key=True)
+    description = models.CharField(max_length=1024)
+    suggestions = models.JSONField()
+    threshold_steps = models.IntegerField()
+    threshold_strength = models.FloatField()

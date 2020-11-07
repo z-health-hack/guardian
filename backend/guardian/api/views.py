@@ -10,6 +10,8 @@ from api.models import TimeSeries, DataPoint, Patient
 from api.serializers import UserSerializer, GroupSerializer, TimeSeriesSerializer, DataPointSerializer, \
     PatientSerializer
 
+from api.ml_models import PatientRegressor
+
 
 class TimeSeriesViewSet(viewsets.ModelViewSet):
     serializer_class = TimeSeriesSerializer
@@ -103,7 +105,11 @@ class StageViewSet(viewsets.ViewSet):
 @permission_classes([permissions.IsAuthenticated])
 def get_stage(request, patient_id):
     patient = PatientViewSet.get_patients_for_user(request.user.id).get(id=patient_id)
-    # ...
+
+    patient_regressor = PatientRegressor(patient=patient, time_series_type='strength')
+
+    predicted_values = patient_regressor.fit_predict_n_days(n_days=180)
+
     return JsonResponse({
         'current_stage': 1,
         'next_stage': 2,
