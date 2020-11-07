@@ -23,7 +23,6 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', api_views.UserViewSet)
 router.register(r'patients', api_views.PatientViewSet)
 router.register(r'patientsdetail', api_views.PatientDetailViewSet, basename='patientsdetail')
-router.register(r'profile', api_views.ProfileViewSet, basename='profile')
 router.register(r'groups', api_views.GroupViewSet)
 router.register(r'timeseries', api_views.TimeSeriesViewSet,  basename='timeseries')
 router.register(r'datapoints', api_views.DataPointViewSet, basename='datapoints')
@@ -34,5 +33,6 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api/v1/api-token-auth/', authtoken_views.obtain_auth_token),
     path('api/v1/api-auth/', include('rest_framework.urls')),
-    path('api/v1/patients/<int:patient_id>/stage', api_views.get_stage)
+    path('api/v1/patients/<int:patient_id>/stage', api_views.get_stage),
+    path('api/v1/profile/me', api_views.get_my_profile)
 ]
