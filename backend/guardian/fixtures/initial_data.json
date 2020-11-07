@@ -145,6 +145,35 @@
     }
   },
   {
+    "model": "api.TimeSeries",
+    "id": 3,
+    "fields": {
+      "time_series_type": "steps",
+      "description": "Number of steps made",
+      "owner_id": 5,
+      "authorized_users": [
+        1,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "api.TimeSeries",
+    "id": 4,
+    "fields": {
+      "time_series_type": "steps",
+      "description": "Number of steps made",
+      "owner_id": 2,
+      "authorized_users": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  {
     "model": "api.DataPoint",
     "id": 1,
     "fields": {
@@ -176,6 +205,78 @@
     "id": 4,
     "fields": {
       "time_series_id": 1,
+      "time_stamp": "2020-01-04T00:00:00.000Z",
+      "value": 0.75
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 5,
+    "fields": {
+      "time_series_id": 3,
+      "time_stamp": "2020-01-01T00:00:00.000Z",
+      "value": 0.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 6,
+    "fields": {
+      "time_series_id": 3,
+      "time_stamp": "2020-01-02T00:00:00.000Z",
+      "value": 1.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 7,
+    "fields": {
+      "time_series_id": 3,
+      "time_stamp": "2020-01-03T00:00:00.000Z",
+      "value": 0.5
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 8,
+    "fields": {
+      "time_series_id": 3,
+      "time_stamp": "2020-01-04T00:00:00.000Z",
+      "value": 0.75
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 9,
+    "fields": {
+      "time_series_id": 4,
+      "time_stamp": "2020-01-01T00:00:00.000Z",
+      "value": 0.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 10,
+    "fields": {
+      "time_series_id": 4,
+      "time_stamp": "2020-01-02T00:00:00.000Z",
+      "value": 1.0
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 11,
+    "fields": {
+      "time_series_id": 4,
+      "time_stamp": "2020-01-03T00:00:00.000Z",
+      "value": 0.5
+    }
+  },
+  {
+    "model": "api.DataPoint",
+    "id": 12,
+    "fields": {
+      "time_series_id": 4,
       "time_stamp": "2020-01-04T00:00:00.000Z",
       "value": 0.75
     }
