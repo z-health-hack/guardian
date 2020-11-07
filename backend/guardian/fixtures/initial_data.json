@@ -103,6 +103,19 @@
     }
   },
   {
+    "model": "api.Patient",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "date_of_birth": "1942-01-08",
+      "date_of_diagnosis": "1963-07-01",
+      "emergency_contact": "Elenor Gehrig",
+      "address": "Kengsington street 44, London",
+      "allergies": "-",
+      "notes": "ALS also named Gehrig's disease"
+    }
+  },
+  {
     "model": "api.TimeSeries",
     "id": 1,
     "fields": {
