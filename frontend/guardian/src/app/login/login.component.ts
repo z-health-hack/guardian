@@ -1,6 +1,6 @@
 import {ActivatedRoute, Router} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import {RETURN_URL_PARAM} from '../auth/auth.guard';
 import {AuthService} from '../auth/auth.service';
 import {SnackBarService} from "../snack-bar.service";

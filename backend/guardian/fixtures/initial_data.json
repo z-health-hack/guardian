@@ -186,7 +186,10 @@
     "fields":{
       "description": "Numb Feeldings",
       "suggestions": [
-        "Get Physio Therapy"
+        {
+          "text": "Get Physio Therapy",
+          "link": "https://www.google.com/maps?q=physiotherapie"
+        }
       ],
       "threshold_steps": 5000,
       "threshold_strength": 10
@@ -198,7 +201,10 @@
     "fields":{
       "description": "Walking on crutches",
       "suggestions": [
-        "Get crutches"
+        {
+          "text": "Get crutches",
+          "link": "https://www.paraplegie.ch/orthotec/de/kontinenz-und-alltagshilfen/alltaegliches/geh-und-stehhilfen"
+        }
       ],
       "threshold_steps": 1000,
       "threshold_strength": 10
@@ -210,8 +216,14 @@
     "fields": {
       "description": "Sitting in a wheel chair",
       "suggestions": [
-        "Get a wheel chair",
-        "Work on the accessibility of the apartment"
+        {
+          "text": "Get a wheel chair",
+          "link": "https://www.google.ch/maps/search/wheelchair+store"
+        },
+        {
+          "text": "Work on the accessibility of the apartment",
+          "link": "https://www.paraplegie.ch/parahelp/de/klienten-und-angehoerige/alter-und-wohnen/wohnmoeglichkeiten-fuer-aeltere-rollstuhlfahrer"
+        }
       ],
       "threshold_steps": 100,
       "threshold_strength": 5
@@ -223,7 +235,10 @@
     "fields": {
       "description": "Nutrition support needed",
       "suggestions": [
-        "Organize assistance during meals"
+        {
+          "text": "Organize assistance during meals",
+          "link": "https://www.spitex.ch/"
+        }
       ],
       "threshold_steps": 100,
       "threshold_strength": 1
@@ -235,7 +250,10 @@
     "fields": {
       "description": "24 hour care",
       "suggestions": [
-        "Organize a place where 24 hour care can be provided."
+        {
+          "text": "Organize a place where 24 hour care can be provided.",
+          "link": "https://www.palliative.ch/de/palliative-ch/"
+        }
       ],
       "threshold_steps": 0,
       "threshold_strength": 0

@@ -40,7 +40,9 @@
 
     <div class="patientdetail-inner">
       <div style="color: white" class="detailview-title title-info">Recommendation</div>
-      <p *ngFor="let s of stageInformation.suggestions">{{s}}</p>
+      <div *ngFor="let s of stageInformation.suggestions">
+        <p>{{s["text"]}}</p><a href="{{s['link']}}" target="_blank">More information</a>
+      </div>
     </div>
   </div>
   <div class="col-8 p-2">
