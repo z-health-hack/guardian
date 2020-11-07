@@ -37,6 +37,14 @@ export class TimeseriesService {
     return this.httpClient.get<Timeseries>(`${TIME_SERIES_URL}/${id}`);
   }
 
+  postTimeSeries(type: string, description: string): Observable<Timeseries> {
+    const ts = {
+      time_series_type: type,
+      description
+    };
+    return this.httpClient.post<Timeseries>(TIME_SERIES_URL, ts);
+  }
+
   pushValue(type, date, value): Observable<DataPoint> {
     const dataPoint = {
       time_series_id: this.typeIDMap[type],

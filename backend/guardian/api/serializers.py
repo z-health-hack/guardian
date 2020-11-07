@@ -25,7 +25,6 @@ class DataPointSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['time_series_id', 'time_stamp', 'value']
 
 
-
 class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
     owner = UserSerializer(required=False)

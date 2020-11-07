@@ -11,14 +11,17 @@
   <div class="col-8">
     <div class="card text-center">
       <div class="card-header">
-        <h2>Day {{currentDay.day}}</h2>
+        <h2>{{currentDay.day.format('LL')}} (Day {{currentDay.day.diff(firstDate, 'days')}})</h2>
       </div>
       <div class="card-body">
         <h4>Steps walked in one go:</h4>
-        <p><ngb-progressbar type="success" [value]="currentDay.steps" [max]="currentDay.steps_max">{{currentDay.steps}} Steps</ngb-progressbar></p>
-        <p><ngb-progressbar type="info" [value]="50"></ngb-progressbar></p>
-        <p><ngb-progressbar type="warning" [value]="150" [max]="200"></ngb-progressbar></p>
-        <p><ngb-progressbar type="danger" [value]="150" [max]="150"></ngb-progressbar></p>
+        <p><ngb-progressbar type="success" [value]="currentDay.step" [max]="currentDay.steps_max">{{currentDay.steps}} Steps</ngb-progressbar></p>
+        <h4>Max strength to squeeze a ball:</h4>
+        <p><ngb-progressbar type="info" [value]="currentDay.strength" [max]="currentDay.strength_max">{{currentDay.strength}} Strength</ngb-progressbar></p>
+        <h4>Average heart rate over one day:</h4>
+        <p><ngb-progressbar type="warning" [value]="currentDay.heartRate" [max]="currentDay.heartRate_max">{{currentDay.heartRate}} Avg. Heart Rate</ngb-progressbar></p>
+        <h4>Average blood oxygen saturation over one day:</h4>
+        <p><ngb-progressbar type="danger" [value]="currentDay.bloodOxygen" [max]="currentDay.bloodOxygen_max">{{currentDay.bloodOxygen}} Blood Oxygen Saturation</ngb-progressbar></p>
         <button mat-button color="primary" (click)="animateDays()">Start Simulation</button>
       </div>
     </div>

@@ -17,7 +17,10 @@ class TimeSeriesViewSet(viewsets.ModelViewSet):
         return TimeSeries.objects.filter(authorized_users__id=user.id).all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        ts: TimeSeries = serializer.save(owner=self.request.user)
+
+        ts.authorized_users.add(self.request.user)
+        ts.save()
 
 
 class DataPointViewSet(viewsets.ModelViewSet):
