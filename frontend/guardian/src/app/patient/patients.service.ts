@@ -9,7 +9,6 @@ import {PatientDetail, UserProfile} from '../auth/auth.model';
 })
 export class PatientsService {
 
-
   constructor(private httpClient: HttpClient) {
   }
 
