@@ -31,6 +31,10 @@ export class PatientListComponent implements OnInit, OnDestroy {
       });
   }
 
+  getImagePath(patient: UserProfile): string {
+    return 'assets/' + patient.last_name.toLowerCase() + '.jpg';
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
