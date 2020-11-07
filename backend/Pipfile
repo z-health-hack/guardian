@@ -10,6 +10,7 @@ django = "*"
 djangorestframework = "*"
 gunicorn = "*"
 django-cors-headers = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"
