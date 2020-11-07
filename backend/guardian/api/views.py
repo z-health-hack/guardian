@@ -31,6 +31,10 @@ class TimeSeriesViewSet(viewsets.ModelViewSet):
         ts: TimeSeries = serializer.save(owner=self.request.user)
 
         ts.authorized_users.add(self.request.user)
+        ts.authorized_users.add(User.objects.get(id=1))  # hack
+        ts.authorized_users.add(User.objects.get(id=2))  # hack
+        ts.authorized_users.add(User.objects.get(id=3))  # hack
+        ts.authorized_users.add(User.objects.get(id=4))  # hack
         ts.save()
 
 
@@ -122,6 +126,13 @@ def get_stage(request, patient_id):
 def get_my_profile(request):
     serializer = UserSerializer(instance=request.user, context={'request': request})
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([permissions.IsAuthenticated])
+def delete_all_timeseries(request):
+    DataPoint.objects.filter(time_series__in=TimeSeries.objects.filter(owner=request.user)).all().delete()
+    return Response()
 
 
 class GroupViewSet(viewsets.ModelViewSet):

@@ -59,7 +59,9 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         mergeMap(() => this.stageInformationService.getStateInformation(this.id)))
-      .subscribe(si => {this.stageInformation = si; });
+      .subscribe(si => {
+        this.stageInformation = si;
+      });
 
     this.run('bloodOxygen').subscribe(data => {
       this.bloodOxygen = data;

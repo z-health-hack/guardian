@@ -34,5 +34,6 @@ urlpatterns = [
     path('api/v1/api-token-auth/', authtoken_views.obtain_auth_token),
     path('api/v1/api-auth/', include('rest_framework.urls')),
     path('api/v1/patients/<int:patient_id>/stage', api_views.get_stage),
+    path('api/v1/delete-all-timeseries', api_views.delete_all_timeseries),
     path('api/v1/profile/me', api_views.get_my_profile)
 ]
