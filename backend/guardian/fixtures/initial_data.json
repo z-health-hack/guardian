@@ -288,12 +288,12 @@
       "description": "Numb Feeldings",
       "suggestions": [
         {
-          "text": "Get Physio Therapy",
+          "text": "Make contact with physio therapist.",
           "link": "https://www.google.com/maps?q=physiotherapie"
         }
       ],
-      "threshold_steps": 5000,
-      "threshold_strength": 10
+      "threshold_steps": 80000,
+      "threshold_strength": 40
     }
   },
   {
@@ -303,12 +303,12 @@
       "description": "Walking on crutches",
       "suggestions": [
         {
-          "text": "Get crutches",
+          "text": "Make an appointment with medical device providers: crutches",
           "link": "https://www.paraplegie.ch/orthotec/de/kontinenz-und-alltagshilfen/alltaegliches/geh-und-stehhilfen"
         }
       ],
       "threshold_steps": 1000,
-      "threshold_strength": 10
+      "threshold_strength": 20
     }
   },
   {
@@ -318,7 +318,7 @@
       "description": "Sitting in a wheel chair",
       "suggestions": [
         {
-          "text": "Get a wheel chair",
+          "text": "Make an appointment with medical device providers: wheelchair",
           "link": "https://www.google.ch/maps/search/wheelchair+store"
         },
         {
@@ -326,8 +326,8 @@
           "link": "https://www.paraplegie.ch/parahelp/de/klienten-und-angehoerige/alter-und-wohnen/wohnmoeglichkeiten-fuer-aeltere-rollstuhlfahrer"
         }
       ],
-      "threshold_steps": 100,
-      "threshold_strength": 5
+      "threshold_steps": 200,
+      "threshold_strength": 10
     }
   },
   {
@@ -341,8 +341,8 @@
           "link": "https://www.spitex.ch/"
         }
       ],
-      "threshold_steps": 100,
-      "threshold_strength": 1
+      "threshold_steps": 10,
+      "threshold_strength": 3
     }
   },
   {
@@ -357,7 +357,7 @@
         }
       ],
       "threshold_steps": 0,
-      "threshold_strength": 0
+      "threshold_strength": 1
     }
   }
 ]
