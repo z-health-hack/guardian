@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User, Group
+from django.http import JsonResponse
 from rest_framework import permissions
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import permission_classes, authentication_classes, api_view
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
@@ -73,9 +76,12 @@ class PatientViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
+        return PatientViewSet.get_patients_for_user(user.id)
 
+    @staticmethod
+    def get_patients_for_user(user_id):
         owners_of_viewable_series = TimeSeries.objects \
-            .filter(authorized_users__id=user.id) \
+            .filter(authorized_users__id=user_id) \
             .values_list('owner', flat=True) \
             .distinct()
 
@@ -85,9 +91,27 @@ class PatientViewSet(viewsets.ModelViewSet):
 class ProfileViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request):
         serializer = UserSerializer(instance=request.user, context={'request': request})
         return Response(serializer.data)
+
+
+class StageViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+
+@api_view(['GET'])
+def get_stage(request, patient_id):
+    patient = PatientViewSet.get_patients_for_user(request.user.id).get(id=patient_id)
+    # ...
+    return JsonResponse({
+        'current_stage': 1,
+        'next_stage': 2,
+        'expected_days_min': 30,
+        'expected_days_max': 60,
+        'suggestions': [
+            'Buy a wheelchair in the next few weeks.'
+        ]})
 
 
 class GroupViewSet(viewsets.ModelViewSet):
