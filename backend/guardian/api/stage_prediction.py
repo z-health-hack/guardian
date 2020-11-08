@@ -108,7 +108,8 @@ def predict_stages(patient):
     if current_stage:
         next_stage: Stage = Stage.objects.filter(id=current_stage.id + 1).first()
     else:
-        next_stage: Stage = Stage.objects.filter(id=1).first()
+        next_stage: Stage = Stage.objects.filter(id=2).first()
+        current_stage: Stage = Stage.objects.filter(id=1).first()
 
     if not next_stage:
         return StagePredictionResult(
