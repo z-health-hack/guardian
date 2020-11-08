@@ -5,7 +5,6 @@ import {TimeseriesService} from '../timeseries/timeseries.service';
 import * as moment from 'moment';
 import {UserProfileService} from '../auth/user-profile.service';
 import {mergeMap} from 'rxjs/operators';
-import {Timeseries} from '../timeseries/timeseries.model';
 
 @Component({
   selector: 'app-simulator',
@@ -23,23 +22,27 @@ export class SimulatorComponent implements OnInit, OnDestroy {
   private days = [];
 
   private typeIDMap = {};
+  private userId: number;
 
   constructor(private timeseriesService: TimeseriesService, private profileService: UserProfileService) {
     this.profileService.userProfile$.pipe(
-      mergeMap(user => this.timeseriesService.getForOwner(String(user.id)))
+      mergeMap(user => {
+        this.userId = user.id;
+        return this.timeseriesService.getForOwner(String(user.id));
+      })
     ).subscribe(ts => {
-      this.checkAndCreateTs(ts, 'strength', 'Hand strength');
-      this.checkAndCreateTs(ts, 'mobility', 'Walked steps in on go');
-      this.checkAndCreateTs(ts, 'heartRate', 'Average Heart Rate over one Day');
-      this.checkAndCreateTs(ts, 'bloodOxygen', 'Blood Oxygen level');
+      this.typeIDMap = {};
+      for (const t of ts) {
+        this.typeIDMap[t.time_series_type] = t.id;
+      }
+      this.checkAndCreateTs('strength', 'Hand strength');
+      this.checkAndCreateTs('mobility', 'Walked steps in on go');
+      this.checkAndCreateTs('heartRate', 'Average Heart Rate over one Day');
+      this.checkAndCreateTs('bloodOxygen', 'Blood Oxygen level');
     });
   }
 
-  checkAndCreateTs(timeSeries: Timeseries[], type: string, description: string): void {
-    for (const t of timeSeries) {
-      this.typeIDMap[t.time_series_type] = t.id;
-    }
-
+  checkAndCreateTs(type: string, description: string): void {
     if (type in this.typeIDMap) {
       return;
     }
