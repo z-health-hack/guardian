@@ -72,6 +72,10 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
     this.run('mobility').subscribe(data => this.mobility = data);
   }
 
+  get showPrediction(): boolean {
+    return this.stageInformation && this.stageInformation.expected_days_min >= 0 && this.stageInformation.expected_days_max >= 0;
+  }
+
   private setId(id: string): void {
     this.id = id;
     this.patientsService.getPatientById(id)
