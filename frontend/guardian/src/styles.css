@@ -33,8 +33,22 @@ h3 {
 }
 
 body.login {
-  background-image: url('assets/background.png');
+  background-image: url('assets/background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: url('assets/WorkSans-VariableFont_wght.ttf'); /* IE9 Compat Modes */
+  src: url('assets/WorkSans-VariableFont_wght.ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'WorkSansBold';
+  src: url('assets/WorkSans-VariableFont_wght.ttf'); /* IE9 Compat Modes */
+  src: url('assets/WorkSans-VariableFont_wght.ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-weight: bold;
 }
