@@ -14,6 +14,14 @@ For a local development setup with PyCharm please follow this instructions:
 
 For local development the ```guardian.settings``` can be used. It uses an SQLite instance.
 
+## Get started
+In order to start development, you need to run the following commands to:
+1. Set the ```DJANGO_SETTINGS_MODULE``` environment variable to ```guardian.settings```
+2. Create the database: ```python manage.py migrate```
+3. Populate initial data: ```python manage.py loaddata fixtures/initial_data.json```
+
+When you know run ```python manage.py runserver``` it will start the backend on port 8000.
+
 ## API Usages:
 1. Getting a token (using curl):
     ```
@@ -25,7 +33,11 @@ For local development the ```guardian.settings``` can be used. It uses an SQLite
    curl -X GET -H "Authorization: Token <token>" <host>:<port>/api/v1/timeseries/
    ```
 
-# Deploy
+## Deployment
+For creating a local deployment simply go into the folder on the same level as this README and run:
+```
+docker build -t eu.gcr.io/health-hack-guardian/guardian-backend .
+docker run -e PORT=80 -p 80:80 eu.gcr.io/health-hack-guardian/guardian-backend:latest
+```
+To create a real world deployment, please follow the steps described [here](../README.md)
 
-
-eu.gcr.io/health-hack-guardian/guardian-backend:0.0.1
