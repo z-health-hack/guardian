@@ -116,8 +116,8 @@ def get_stage(request, patient_id):
         return JsonResponse({
             'current_stage': stage_prediction_results.current_stage.id,
             'next_stage': stage_prediction_results.next_stage.id,
-            'expected_days_min': stage_prediction_results.expected_weeks_min,
-            'expected_days_max': stage_prediction_results.expected_weeks_max,
+            'expected_days_min': max(0, stage_prediction_results.expected_weeks_min),
+            'expected_days_max': max(0, stage_prediction_results.expected_weeks_max),
             'suggestions': stage_prediction_results.next_stage.suggestions
         })
 
