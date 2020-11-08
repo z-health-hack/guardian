@@ -53,9 +53,9 @@ export class TimeseriesService {
     return this.httpClient.delete<void>(DELETE_ALL_TIME_SERIES_URL);
   }
 
-  pushValue(type, date, value): Observable<DataPoint> {
+  pushValue(timeSeriesId, date, value): Observable<DataPoint> {
     const dataPoint = {
-      time_series_id: this.typeIDMap[type],
+      time_series_id: timeSeriesId,
       time_stamp: date.toDate(),
       value
     };

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {filter, tap} from 'rxjs/operators';
 import {UserProfile} from './auth.model';
 import {USER_PROFILE_URL} from '../endpoints';
 
@@ -23,7 +23,7 @@ export class UserProfileService {
   }
 
   public get userProfile$(): Observable<UserProfile> {
-    return this.user$.asObservable();
+    return this.user$.asObservable().pipe(filter(x => x !== null));
   }
 
   public removeUserProfile(): void {

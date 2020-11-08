@@ -19,6 +19,9 @@ The System was designed to be hosted in the Cloud or On-Premise. It is preferabl
 In the architecture diagram, it is shown how the system is setup. We use Google Firebase for hosting the static content and also use their Content Delivery Network (CDN) for low latency. API requests are routed through Firebase to our scalable backend. This in turn access the managed Cloud SQL database instance.
 
 ## Deployment
-The deployment is fully automated through a 
+The deployment is fully automated through a continuous deployment pipeline with github actions. For creating a new version, please follow these steps:
+1. Go to github and klick releases on the right
+2. Go to "Draft new release"
+3. 
 
 - Fully Automated CI/CD Pipeline
