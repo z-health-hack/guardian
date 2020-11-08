@@ -22,6 +22,7 @@ In the architecture diagram, it is shown how the system is setup. We use Google 
 The deployment is fully automated through a continuous deployment pipeline with github actions. For creating a new version, please follow these steps:
 1. Go to github and klick releases on the right
 2. Go to "Draft new release"
-3. 
-
-- Fully Automated CI/CD Pipeline
+3. Insert a new version number and click create release
+4. In the background there is now the frontend build and deployed to firebase and also the docker image build, pushed to GCR
+and the Cloud Run configuration updated.
+5. You have a now a new release. Have fun!
