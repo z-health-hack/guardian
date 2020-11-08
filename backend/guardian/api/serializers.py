@@ -33,7 +33,7 @@ class DataPointSerializer(serializers.HyperlinkedModelSerializer):
 
 class TimeSeriesSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
-    owner = UserSerializer(required=False)
+    owner = UserSerializer(read_only=True, required=False)
     time_series_type = serializers.CharField(required=True)
     description = serializers.CharField(required=True)
     data_points = DataPointSerializer(many=True, required=False)
