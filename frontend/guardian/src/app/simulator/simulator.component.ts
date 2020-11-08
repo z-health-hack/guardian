@@ -3,6 +3,9 @@ import {Subscription, timer} from 'rxjs';
 import {TimeseriesService} from '../timeseries/timeseries.service';
 
 import * as moment from 'moment';
+import {UserProfileService} from '../auth/user-profile.service';
+import {mergeMap} from 'rxjs/operators';
+import {Timeseries} from '../timeseries/timeseries.model';
 
 @Component({
   selector: 'app-simulator',
@@ -19,22 +22,30 @@ export class SimulatorComponent implements OnInit, OnDestroy {
   private currentIndex = 0;
   private days = [];
 
-  constructor(private timeseriesService: TimeseriesService) {
-    this.timeseriesService.getAll().subscribe(ts => {
-      this.checkAndCreateTs('strength', 'Hand strength');
-      this.checkAndCreateTs('mobility', 'Walked steps in on go');
-      this.checkAndCreateTs('heartRate', 'Average Heart Rate over one Day');
-      this.checkAndCreateTs('bloodOxygen', 'Blood Oxygen level');
+  private typeIDMap = {};
+
+  constructor(private timeseriesService: TimeseriesService, private profileService: UserProfileService) {
+    this.profileService.userProfile$.pipe(
+      mergeMap(user => this.timeseriesService.getForOwner(String(user.id)))
+    ).subscribe(ts => {
+      this.checkAndCreateTs(ts, 'strength', 'Hand strength');
+      this.checkAndCreateTs(ts, 'mobility', 'Walked steps in on go');
+      this.checkAndCreateTs(ts, 'heartRate', 'Average Heart Rate over one Day');
+      this.checkAndCreateTs(ts, 'bloodOxygen', 'Blood Oxygen level');
     });
   }
 
-  checkAndCreateTs(type: string, description: string): void {
-    if (type in this.timeseriesService.typeIDMap) {
+  checkAndCreateTs(timeSeries: Timeseries[], type: string, description: string): void {
+    for (const t of timeSeries) {
+      this.typeIDMap[t.time_series_type] = t.id;
+    }
+
+    if (type in this.typeIDMap) {
       return;
     }
 
     this.timeseriesService.postTimeSeries(type, description).subscribe(x => {
-      this.timeseriesService.getAll().subscribe();
+      this.typeIDMap[x.time_series_type] = x.id;
     });
   }
 
@@ -57,20 +68,20 @@ export class SimulatorComponent implements OnInit, OnDestroy {
 
   animateDays(): void {
     this.stopTimer();
-    this.timerSubscription = timer(0, 200)
+    this.timerSubscription = timer(0, 700)
       .subscribe(x => {
         if (this.currentIndex < this.days.length) {
           this.currentDay = this.days[this.currentIndex++];
-          this.timeseriesService.pushValue('mobility',
+          this.timeseriesService.pushValue(this.typeIDMap['mobility'],
             this.currentDay.day,
             this.currentDay.step).subscribe();
-          this.timeseriesService.pushValue('strength',
+          this.timeseriesService.pushValue(this.typeIDMap['strength'],
             this.currentDay.day,
             this.currentDay.strength).subscribe();
-          this.timeseriesService.pushValue('heartRate',
+          this.timeseriesService.pushValue(this.typeIDMap['heartRate'],
             this.currentDay.day,
             this.currentDay.heartRate).subscribe();
-          this.timeseriesService.pushValue('bloodOxygen',
+          this.timeseriesService.pushValue(this.typeIDMap['bloodOxygen'],
             this.currentDay.day,
             this.currentDay.bloodOxygen).subscribe();
         } else {
