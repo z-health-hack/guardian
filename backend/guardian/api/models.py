@@ -8,6 +8,9 @@ class TimeSeries(models.Model):
     description = models.CharField(max_length=512)
     time_series_type = models.CharField(max_length=256)
 
+    class Meta:
+        unique_together = ('owner', 'time_series_type',)
+
 
 class DataPoint(models.Model):
     time_series = models.ForeignKey(TimeSeries, null=False, on_delete=models.CASCADE, related_name='data_points')
